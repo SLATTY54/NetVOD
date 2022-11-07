@@ -1,0 +1,10 @@
+{
+    "name": "netvod/src",
+    "description": "Un service de streaming top tier",
+    "autoload": {
+        "psr-4": {
+            "netvod\\": "./"
+        }
+    },
+    "require": {}
+}
