@@ -2,27 +2,24 @@
 
 namespace netvod\actions;
 
-class WelcomeAction extends Action
+class AddSerieFavourite extends Action
 {
+
     public function execute(): string
     {
-        $html = <<<HEREDOC
-                        <html lang="en">
+        $html = <<< HEREDOC
+                        <html lang="fr">
                             <head><title>NetVod</title>
                                   <link href="./css/welcome-style.css" rel="stylesheet">
                             </head>
                             <body>
-                                <div class="txt" contenteditable="false">
-                                    NetVOD
+                                <div>
+                                    <p>Ajout de ta série préférée</p>
                                 </div>
-                                <footer><button class="btn">Entrez sur le site</button></footer>
                             </body>
                         </html>
-        
-HEREDOC;
-
+                HEREDOC;
 
         return $html;
-          
     }
 }

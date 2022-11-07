@@ -2,6 +2,7 @@
 
 namespace netvod\dispatcher;
 
+use netvod\actions\AddSerieFavourite;
 use netvod\actions\WelcomeAction;
 
 class Dispatcher
@@ -17,13 +18,16 @@ class Dispatcher
     public function run(): void
     {
         switch ($this->action) {
+            case "add-serie-favourite":
+                $act = new AddSerieFavourite();
+                $html = $act->execute();
+                break;
             default:
-
                 $act = new WelcomeAction();
                 $html = $act->execute();
-
                 break;
         }
+
         $this->renderPage($html);
     }
 
