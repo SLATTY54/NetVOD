@@ -1,5 +1,7 @@
 <?php
 
+require 'vendor/autoload.php';
+
 use netvod\dispatcher\Dispatcher;
 
 session_start();
