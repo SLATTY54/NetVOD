@@ -18,7 +18,7 @@ class DisplayCatalogueAction extends Action{
             $img=$row['img'];
             $html.=<<<end
                 <div class=$titre>
-                    <br><a href='?action=DisplaySerieAction&serie_id=$id'>$titre</a>
+                    <br><a href='?action=serie&serie_id=$id'>$titre</a>
                     <img src=$img>
                     <button type="submit">ajouter au favoris</button>
                 </div>
