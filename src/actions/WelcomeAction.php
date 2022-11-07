@@ -15,7 +15,7 @@ class welcomeAction extends Action
                                 <div class="txt" contenteditable="false">
                                     NetVOD
                                 </div>
-                                <footer><button class="btn">Entrez sur le site</button></footer>
+                                <footer><a href="?action=login"><button class="btn"> Entrez sur le site</button></a></footer>
                             </body>
                         </html>
         
