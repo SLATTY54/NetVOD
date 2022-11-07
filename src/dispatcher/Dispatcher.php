@@ -2,7 +2,7 @@
 
 namespace netvod\dispatcher;
 
-use netvod\actionFiles\defaultAction;
+use netvod\actions\WelcomeAction;
 
 class Dispatcher
 {
@@ -19,7 +19,7 @@ class Dispatcher
         switch ($this->action) {
             default:
 
-                $act = new DefaultAction();
+                $act = new WelcomeAction();
                 $html = $act->execute();
 
                 break;

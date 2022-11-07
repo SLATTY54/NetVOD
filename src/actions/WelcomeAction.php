@@ -1,15 +1,15 @@
 <?php
 
-namespace netvod\actionFiles;
+namespace netvod\actions;
 
-class defaultAction extends Action
+class welcomeAction extends Action
 {
     public function execute(): string
     {
         $html = <<<HEREDOC
                         <html lang="en">
                             <head><title>NetVod</title>
-                                  <link href="./css/defaultActionStyle.css" rel="stylesheet">
+                                  <link href="./css/welcome-style.css" rel="stylesheet">
                             </head>
                             <body>
                                 <div class="txt" contenteditable="false">

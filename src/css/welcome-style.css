@@ -12,7 +12,7 @@ body {
     font-family: "Roboto";
     font-size: 12vmin;
     font-weight: 700;
-    animation: netflix_style 3.5s normal;
+    animation: netflix_style 2s normal;
     outline: none;
     white-space: nowrap;
 }
@@ -30,7 +30,7 @@ body {
     border: none;
     color: #ffffff;
     background-color: #e50914;
-    animation: buttone 3.5s normal;
+    animation: buttone 2s normal;
 }
 @keyframes buttone {
     0% {
