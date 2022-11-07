@@ -1,5 +1,5 @@
 <?php
-namespace netvod\actionFiles;
+namespace netvod\actions;
 abstract class Action
 {
 
