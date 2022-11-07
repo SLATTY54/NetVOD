@@ -37,7 +37,7 @@ class DisplaySerieAction extends Action
         foreach ($query->fetchAll(PDO::FETCH_OBJ) as $row) {
             $html .= <<<end
                     <div class=$row->id>
-                        <br><a href="?action=episode&?episode_id=$row->id">$row->id : $row->titre ($row->duree min)</a>
+                        <br><a href="?action=episode&episode_id=$row->id">$row->id : $row->titre ($row->duree min)</a>
                     </div>
                 end;
         }
