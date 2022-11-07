@@ -16,8 +16,12 @@ class DisplayCatalogueAction extends Action{
             $id=$row['id'];
             $titre=$row['titre'];
             $img=$row['img'];
-            $html.="<br><a href='?action=DisplaySerieAction&serie_id=$id'>$titre</a>";
-            $html.="<img src=$img>";
+            $html.=<<<end
+                <div class=$titre>
+                    <br><a href='?action=DisplaySerieAction&serie_id=$id'>$titre</a>
+                    <img src=$img>
+                </div>
+            end;
         }
         return $html;
     }
