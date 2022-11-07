@@ -12,9 +12,10 @@ class defaultAction extends Action
                                   <link href="./css/defaultActionStyle.css" rel="stylesheet">
                             </head>
                             <body>
-                                <div class="txt" contenteditable="true">
+                                <div class="txt" contenteditable="false">
                                     NetVod
                                 </div>
+                                <footer><button class="btn">Entrez sur le site</button></footer>
                             </body>
                         </html>
         

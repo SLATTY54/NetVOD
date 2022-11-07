@@ -16,6 +16,30 @@ body {
     white-space: nowrap;
 }
 
+.btn{
+    width: 12%;
+    height: 50px;
+    margin-top: 18%;
+    margin-left: 44%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    background-color: #e50914;
+    animation: buttone 3.5s normal;
+}
+@keyframes buttone {
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+
+}
+
 @keyframes netflix_style {
     0% {
         text-shadow: 0px 0px transparent, 1px 1px #aaa, 2px 2px #aaa, 3px 3px #aaa, 4px 4px #aaa, 5px 5px #aaa, 6px 6px #aaa, 7px 7px #aaa, 8px 8px #aaa, 9px 9px #aaa, 10px 10px #aaa, 11px 11px #aaa, 12px 12px #aaa, 13px 13px #aaa, 14px 14px #aaa, 15px 15px #aaa, 16px 16px #aaa, 17px 17px #aaa, 18px 18px #aaa, 19px 19px #aaa, 20px 20px #aaa, 21px 21px #aaa, 22px 22px #aaa, 23px 23px #aaa, 24px 24px #aaa, 25px 25px #aaa, 26px 26px #aaa, 27px 27px #aaa, 28px 28px #aaa, 29px 29px #aaa, 30px 30px #aaa, 31px 31px #aaa, 32px 32px #aaa, 33px 33px #aaa, 34px 34px #aaa, 35px 35px #aaa, 36px 36px #aaa, 37px 37px #aaa, 38px 38px #aaa, 39px 39px #aaa, 40px 40px #aaa, 41px 41px #aaa, 42px 42px #aaa, 43px 43px #aaa, 44px 44px #aaa, 45px 45px #aaa, 46px 46px #aaa, 47px 47px #aaa, 48px 48px #aaa, 49px 49px #aaa, 50px 50px #aaa, 51px 51px #aaa, 52px 52px #aaa, 53px 53px #aaa, 54px 54px #aaa, 55px 55px #aaa, 56px 56px #aaa, 57px 57px #aaa, 58px 58px #aaa, 59px 59px #aaa, 60px 60px #aaa, 61px 61px #aaa, 62px 62px #aaa, 63px 63px #aaa, 64px 64px #aaa, 65px 65px #aaa, 66px 66px #aaa, 67px 67px #aaa, 68px 68px #aaa, 69px 69px #aaa, 70px 70px #aaa, 71px 71px #aaa, 72px 72px #aaa, 73px 73px #aaa, 74px 74px #aaa, 75px 75px #aaa, 76px 76px #aaa, 77px 77px #aaa, 78px 78px #aaa, 79px 79px #aaa, 80px 80px #aaa, 81px 81px #aaa, 82px 82px #aaa, 83px 83px #aaa, 84px 84px #aaa, 85px 85px #aaa, 86px 86px #aaa, 87px 87px #aaa, 88px 88px #aaa, 89px 89px #aaa, 90px 90px #aaa, 91px 91px #aaa, 92px 92px #aaa, 93px 93px #aaa, 94px 94px #aaa, 95px 95px #aaa, 96px 96px #aaa, 97px 97px #aaa, 98px 98px #aaa, 99px 99px #aaa, 100px 100px #aaa;
@@ -45,5 +69,8 @@ body {
     }
     100% {
         opacity: 0;
+
     }
 }
+
+

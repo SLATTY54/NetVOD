@@ -18,8 +18,10 @@ class Dispatcher
     {
         switch ($this->action) {
             default:
+
                 $act = new DefaultAction();
                 $html = $act->execute();
+
                 break;
         }
         $this->renderPage($html);
