@@ -17,6 +17,12 @@ class Dispatcher
     public function run(): void
     {
         switch ($this->action) {
+
+            case 'signup':
+                $act = new \netvod\actions\SignUpAction();
+                $html = $act->execute();
+                break;
+
             default:
 
                 $act = new WelcomeAction();
