@@ -13,7 +13,7 @@ class defaultAction extends Action
                             </head>
                             <body>
                                 <div class="txt" contenteditable="false">
-                                    NetVod
+                                    NetVOD
                                 </div>
                                 <footer><button class="btn">Entrez sur le site</button></footer>
                             </body>
