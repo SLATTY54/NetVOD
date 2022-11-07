@@ -9,11 +9,12 @@ class defaultAction extends Action
         $html = <<<HEREDOC
                         <html lang="en">
                             <head><title>NetVod</title>
-                                  <link href="../css/defaultActionStyle.scss" rel="stylesheet">
+                                  <link href="./css/defaultActionStyle.css" rel="stylesheet">
                             </head>
                             <body>
-                                .txt contenteditable="true"
-                                 | NetVod
+                                <div class="txt" contenteditable="true">
+                                    NetVod
+                                </div>
                             </body>
                         </html>
         
