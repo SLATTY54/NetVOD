@@ -2,7 +2,7 @@
 
 namespace netvod\actions;
 
-use database\ConnectionFactory;
+use netvod\database\ConnectionFactory;
 use PDO;
 
 class DisplayCatalogueAction extends Action{
@@ -10,7 +10,7 @@ class DisplayCatalogueAction extends Action{
     public function execute(): string{
         $html="<h1>Catalogue de Série</h1>";
         $bd = ConnectionFactory::makeConnection();
-        $query=$bd->prepare("SELECT id,titre,img FROM SERIE");
+        $query=$bd->prepare("SELECT id,titre,img FROM serie");
         $query->execute();
         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $row){
             $id=$row['id'];

@@ -21,6 +21,7 @@ class Dispatcher
             case"catalogue":
                 $act = new DisplayCatalogueAction();
                 $html = $act->execute();
+                break;
             default:
 
                 $act = new WelcomeAction();
