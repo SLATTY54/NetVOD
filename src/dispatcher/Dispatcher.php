@@ -21,6 +21,7 @@ class Dispatcher
             case"serie":
                 $act = new DisplaySerieAction();
                 $html = $act->execute();
+                break;
             default:
                 $act = new WelcomeAction();
                 $html = $act->execute();
