@@ -2,6 +2,7 @@
 
 namespace netvod\dispatcher;
 
+use netvod\actions\DisplaySerieAction;
 use netvod\actions\WelcomeAction;
 
 class Dispatcher
@@ -17,8 +18,10 @@ class Dispatcher
     public function run(): void
     {
         switch ($this->action) {
+            case"serie":
+                $act = new DisplaySerieAction();
+                $html = $act->execute();
             default:
-
                 $act = new WelcomeAction();
                 $html = $act->execute();
 
