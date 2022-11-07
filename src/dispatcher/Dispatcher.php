@@ -17,6 +17,11 @@ class Dispatcher
     public function run(): void
     {
         switch ($this->action) {
+        // si l'utilisateur clique sur un episode d'une serie
+            case 'episode':
+                $act = new lectureEpisodeAction();
+                $html = $act->execute();
+                break;
             default:
 
                 $act = new WelcomeAction();
