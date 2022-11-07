@@ -2,6 +2,7 @@
 
 namespace netvod\dispatcher;
 
+use netvod\actions\ActionLogin;
 use netvod\actions\WelcomeAction;
 
 class Dispatcher
@@ -17,6 +18,10 @@ class Dispatcher
     public function run(): void
     {
         switch ($this->action) {
+            case 'login':
+                $act = new ActionLogin();
+                $html = $act->execute();
+                break;
             default:
 
                 $act = new WelcomeAction();
