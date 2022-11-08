@@ -36,21 +36,26 @@
     direction: rtl;
 }
 
-.rating a {
-    color: #aaa;
-    text-decoration: none;
-    font-size: 3em;
-    transition: color .4s;
+
+input[type="radio"] {
+    display: none;
 }
 
-.rating a:hover,
-.rating a:focus,
-.rating a:hover ~ a,
-.rating a:focus ~ a,
-.rating a:checked ~ a{
+.etoile:hover,
+.etoile:focus,
+.etoile:hover ~ .etoile,
+.etoile:focus ~ .etoile{
     color: red;
     cursor: pointer;
 }
+
+.etoile {
+    color: grey;
+    font-size: 3em;
+    cursor: pointer;
+    transition: color .4s;
+}
+
 .avis{
     margin-left: auto;
     margin-right: auto;

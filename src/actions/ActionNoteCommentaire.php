@@ -20,7 +20,7 @@ class ActionNoteCommentaire extends Action {
                 $html .= $this->renderHtml(true);
             }else{
                 if (isset($_POST['send'])){
-                    $nbetoile = filter_var($_GET['etoile'], FILTER_SANITIZE_NUMBER_INT);
+                    $nbetoile = filter_var($_POST['note'], FILTER_SANITIZE_NUMBER_INT);
                     $commentaire = filter_var($_POST['commentaire'], FILTER_SANITIZE_STRING);
                     $user = unserialize($_SESSION['user']);
                     $id = $user->__get('id');
@@ -37,7 +37,7 @@ class ActionNoteCommentaire extends Action {
 
             $nbEtoiles =0;
             $html = <<<HEREDOC
-                    <body>
+                    <body xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
                                 <div class="container">
                                     <button type="submit" onclick="openPopup()">click me!</button>
                                     <div class="popup" id="popup">
@@ -45,11 +45,23 @@ class ActionNoteCommentaire extends Action {
                                             <div class="popupContent">
                                                 <h1>Noter le film</h1>
                                                 <div class="rating">
-                                                   <a href="?action=notation&etoile=5" id="5" title="Donner 5 étoiles">☆</a>
-                                                   <a href="?action=notation&etoile=4" id="4" title="Donner 4 étoiles">☆</a>
-                                                   <a href="?action=notation&etoile=3" id="3" title="Donner 3 étoiles">☆</a>
-                                                   <a href="?action=notation&etoile=2" id="2" title="Donner 2 étoiles">☆</a>
-                                                   <a href="?action=notation&etoile=1" id="1" title="Donner 1 étoile">☆</a>
+                                                   <input type="radio" value="5" name="note" id="1" title="Donner 5 étoiles">
+                                                        <span class="etoile">★</span>
+                                                   </input>
+                                                   
+                                                   <input type="radio" value="4" name="note" id="2" title="Donner 4 étoiles">
+                                                        <span class="etoile">★</span>
+                                                   </input>
+                                                   <input type="radio" value="3" name="note" id="3" title="Donner 3 étoiles">
+                                                        <span class="etoile">★</span>
+                                                   </input>
+                                                   <input type="radio" value="2" name="note" id="4" title="Donner 2 étoiles">
+                                                        <span class="etoile">★</span>
+                                                   </input>
+
+                                                   <input type="radio" value="1" name="note" id="5" title="Donner 1 étoile">
+                                                        <span class="etoile">★</span>
+                                                    </input>
                                                 </div>
                                                 
                                                     <div class="avis">
