@@ -12,7 +12,7 @@ class ActionLogin extends Action
         $html = <<<HEREDOC
                     <html lang="en">
                     <head><title>NetVod</title>
-                          <link href="./css/login-style.css" rel="stylesheet">
+                          <link href="./css/formulaire_style.css" rel="stylesheet">
                     </head> 
                     HEREDOC;
 
