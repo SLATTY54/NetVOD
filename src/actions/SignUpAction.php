@@ -3,6 +3,7 @@
 namespace netvod\actions;
 
 use netvod\auth\Auth;
+use netvod\classes\Authentification;
 
 class SignUpAction extends Action
 {
@@ -34,8 +35,8 @@ class SignUpAction extends Action
                 if ($password != $password2) {
                     $html .= $this->renderHtml(false, true);
 
-                } else if (!Auth::isRegistered($email)) {
-                    Auth::register($email, $password);
+                } else if (!Authentification::isRegistered($email)) {
+                    Authentification::register($email, $password);
                     $html .= <<<HEREDOC
                     <p>Vous êtes inscrit</p>
                     <a href="?action=login">Se connecter</a>
