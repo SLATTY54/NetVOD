@@ -1,6 +1,6 @@
 <?php
 
-namespace netvod\database;
+namespace database;
 
 use PDO;
 
