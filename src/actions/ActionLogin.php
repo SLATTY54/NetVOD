@@ -22,21 +22,31 @@ class ActionLogin extends Action
             
                 <body>
                 <form method="post" action="?action=login">
-                    <div class="login">
-                        <h1 id="title">Se connecter</h1>
+                    <video autoplay muted loop id="trailer">
+                        <source src="../resources/Trailer.mp4" type="video/mp4"></video>
+                    <img id="logo" src="../resources/logo.png" alt="logo">
+                    
+                    <div class="connexion">
                        
-                        <div class="emailControl">
-                                <input type="email" name="email" id="id_email" placeholder="E-mail" class="textfield">      
-                        </div>
-                        
-                        <div class="passwordControl">
-                                <input type="password" name="password" id="id_password" placeholder="Mot de passe" class="textfield">
-                        </div>
-                        <div class="buttonControl">
-                          <button type="submit" class="btnConnect">Connection</button>
+                        <div class="login">
+                            <h1 id="title">Se connecter</h1>
+                           
+                            <div class="emailControl">
+                                    <input type="email" name="email" id="id_email" placeholder="E-mail" class="textfield">      
+                            </div>
+                            
+                            <div class="passwordControl">
+                                    <input type="password" name="password" id="id_password" placeholder="Mot de passe" class="textfield">
+                            </div>
+                            <div class="buttonControl">
+                              <button type="submit" class="btnConnect">Connection</button>
+                            </div>
                         </div>
                     </div>
-                </form>
+                    
+                    </form>
+                    <p class="footer">@copyright KINZELIN Rémy,SIGNORELLI LUCAS, HIRTZ Jules, PERROT Alexandre and Lucas</p>
+                
                     
                     
                 
