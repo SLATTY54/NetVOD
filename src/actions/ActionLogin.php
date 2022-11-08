@@ -39,7 +39,7 @@ class ActionLogin extends Action
                                     <input type="password" name="password" id="id_password" placeholder="Mot de passe" class="textfield">
                             </div>
                             <div class="buttonControl">
-                              <button type="submit" class="btnConnect">Connection</button>
+                              <button type="submit" class="btnConnect">Connexion</button>
                             </div>
                         </div>
                     </div>
