@@ -3,6 +3,7 @@
 namespace netvod\dispatcher;
 
 use netvod\actions\AddSerieFavourite;
+use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\WelcomeAction;
 
 class Dispatcher
@@ -22,12 +23,17 @@ class Dispatcher
                 $act = new AddSerieFavourite();
                 $html = $act->execute();
                 break;
-            default:
-                $act = new WelcomeAction();
+            case"catalogue":
+                $act = new DisplayCatalogueAction();
                 $html = $act->execute();
                 break;
-        }
+            default:
 
+                $act = new WelcomeAction();
+                $html = $act->execute();
+
+                break;
+        }
         $this->renderPage($html);
     }
 
