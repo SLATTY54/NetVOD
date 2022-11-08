@@ -2,6 +2,7 @@
 
 namespace netvod\dispatcher;
 
+use netvod\actions\ActionNoteCommentaire;
 use netvod\actions\WelcomeAction;
 
 class Dispatcher
@@ -17,6 +18,10 @@ class Dispatcher
     public function run(): void
     {
         switch ($this->action) {
+            case 'notation':
+                $action = new ActionNoteCommentaire();
+                $html = $action->execute();
+                break;
             default:
 
                 $act = new WelcomeAction();
