@@ -13,23 +13,14 @@ class SignUpAction extends Action
         <html>
             <head>
             <title>NetVOD</title>
-            <link href="./css/signup_style.css" rel="stylesheet">
+            <link href="./css/formulaire_style.css" rel="stylesheet">
 
             </head>
         HTML;
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $html .= <<<HEREDOC
-            <body>
-                <form method="post" action="?action=signup">
-                    <label>Email : <input type="email" name="email" placeholder="<user@mail.bing>"></label>
-                    <label>Mot de passe : <input type="password" name="password" placeholder="<password>"></label>
-                    <label>Confirmer le mot de passe : <input type="password" name="password2" placeholder="<password>"></label>
-                    <input type="submit" value="S'inscrire">
-                </form>
-            </body>
-            </html>
-            HEREDOC;
+
+            $html .= $this->renderHtml(false);
         }
         else
         {
@@ -41,10 +32,8 @@ class SignUpAction extends Action
                 $password2 = filter_var($_POST['password2'], FILTER_SANITIZE_STRING);
 
                 if ($password != $password2) {
-                    $html .= <<<HEREDOC
-                    <p>Les mots de passe ne correspondent pas</p>
-                    <a href="?action=signup">Retour</a>
-                HEREDOC;
+                    $html .= $this->renderHtml(false, true);
+
                 } else if (!Auth::isRegistered($email)) {
                     Auth::register($email, $password);
                     $html .= <<<HEREDOC
@@ -52,13 +41,67 @@ class SignUpAction extends Action
                     <a href="?action=login">Se connecter</a>
                 HEREDOC;
                 } else {
-                    $html .= <<<HEREDOC
-                    <p>Cet email est déjà utilisé</p>
-                    <a href="?action=signup">Retour</a>
-                HEREDOC;
+                    $html .= $this->renderHtml(true);
                 }
             }
         }
+
+        return $html;
+    }
+
+
+    public function renderHtml(bool $errorEmail = false, bool $errorPwd = false): string
+    {
+        $html = <<<HEREDOC
+                <body>
+                <form method="post" action="?action=signup">
+                <video autoplay muted loop id="trailer">
+                    <source src="../resources/netvod_trailer.mov" type="video/mp4"></video>
+                <img id="logo" src="../resources/logo.png" alt="logo">
+                
+                <div class="connexion">
+                    <div class="register">
+                        <h1 id="title">S'inscrire</h1>
+                    
+                        <div class="emailControl">
+                            <input type="email" name="email" id="id_email" placeholder="E-mail" class="textfield">
+                        </div>
+                
+                        <div class="passwordControl">
+                            <input type="password" name="password" id="id_password" placeholder="Mot de passe" class="textfield" minlength="5">
+                        </div>
+                    
+                        <div class="passwordControl">
+                            <input type="password" name="password2" id="id_password" placeholder="Confirmer mot de passe" class="textfield" minlength="5">
+                        </div>
+                HEREDOC;
+
+        if ($errorPwd) {
+            $html .= <<<HEREDOC
+                        <div class="errorMessage">
+                            <label>Les mots de passe ne correspondent pas</label>
+                        </div>
+                    HEREDOC;
+        }
+
+        if ($errorEmail) {
+            $html .= <<<HEREDOC
+                        <div class="errorMessage">
+                            <label>Cet email est déjà utilisé</label>
+                        </div>
+                    HEREDOC;
+        }
+        $html .= <<<HEREDOC
+
+                        <div class="buttonControl">
+                            <input type="submit" class="btnRegister" value="S'inscrire">
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </body>
+            </html>
+            HEREDOC;
 
         return $html;
     }
