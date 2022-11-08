@@ -2,7 +2,6 @@
 
 require 'vendor/autoload.php';
 
-use netvod\database\ConnectionFactory;
 use netvod\dispatcher\Dispatcher;
 
 session_start();

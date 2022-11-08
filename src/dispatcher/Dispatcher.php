@@ -2,8 +2,9 @@
 
 namespace netvod\dispatcher;
 
-use netvod\actions\ActionLogin;
 use netvod\actions\WelcomeAction;
+use netvod\actions\ActionLogin;
+use netvod\actions\SignUpAction;
 
 class Dispatcher
 {
@@ -22,6 +23,12 @@ class Dispatcher
                 $act = new ActionLogin();
                 $html = $act->execute();
                 break;
+
+            case 'signup':
+                $act = new SignUpAction();
+                $html = $act->execute();
+                break;
+
             default:
 
                 $act = new WelcomeAction();
