@@ -25,7 +25,8 @@ class ActionLogin extends Action
                 $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
                 try {
                     Authentification::authenticate($email,$password);
-                    echo "Vous êtes connecté";
+                    $act = new DisplayPreferencesAction();
+                    $html= $act->execute();
                 }catch (AuthException $e){
                     $html.= $this->renderHtml(true);
 

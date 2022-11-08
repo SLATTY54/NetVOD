@@ -22,14 +22,20 @@ class Dispatcher
 
     public function run(): void
     {
+
+        $retour=<<<end
+            <div class="footer">
+                <a href="?action=pref">retour à l'accueil</a>
+            </div>
+        end;
         switch ($this->action) {
             case'catalogue':
                 $act = new DisplayCatalogueAction();
-                $html = $act->execute();
+                $html = $act->execute().$retour;
                 break;
             case'serie':
                 $act = new DisplaySerieAction();
-                $html = $act->execute();
+                $html = $act->execute().$retour;
                 break;
             case "favourite":
                 $act = new AddSerieFavourite();
