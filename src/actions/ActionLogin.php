@@ -80,7 +80,7 @@ class ActionLogin extends Action
                                       <button type="submit" class="btnConnect">Connexion</button>
                                     </div>
                                     <div class="Signup">
-                                        <p>Vous n'avez pas de compte ? <a href="#" style="color: red" >S'inscrire</a></p>
+                                        <p>Vous n'avez pas de compte ? <a href="?action=signup" style="color: red" >S'inscrire</a></p>
                                     </div>
                                 </div>
                             </div>
