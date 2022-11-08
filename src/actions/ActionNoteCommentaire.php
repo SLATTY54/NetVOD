@@ -20,10 +20,11 @@ class ActionNoteCommentaire extends Action {
                 $html .= $this->renderHtml(true);
             }else{
                 if (isset($_POST['send'])){
-                    $nbetoile = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+                    $nbetoile = filter_var($_GET['etoile'], FILTER_SANITIZE_NUMBER_INT);
                     $commentaire = filter_var($_POST['commentaire'], FILTER_SANITIZE_STRING);
-                    $iduser = filter_var($_SESSION['user']->id, FILTER_SANITIZE_NUMBER_INT);
-                    echo $iduser;
+                    $user = unserialize($_SESSION['user']);
+                    $id = $user->__get('id');
+                    echo $id;
                     echo $nbetoile;
                     echo $commentaire;
                 }
@@ -44,11 +45,11 @@ class ActionNoteCommentaire extends Action {
                                             <div class="popupContent">
                                                 <h1>Noter le film</h1>
                                                 <div class="rating">
-                                                   <a id="5" title="Donner 5 étoiles">☆</a>
-                                                   <a id="4" title="Donner 4 étoiles">☆</a>
-                                                   <a id="3" title="Donner 3 étoiles">☆</a>
-                                                   <a id="2" title="Donner 2 étoiles">☆</a>
-                                                   <a id="1" title="Donner 1 étoile">☆</a>
+                                                   <a href="?action=notation&etoile=5" id="5" title="Donner 5 étoiles">☆</a>
+                                                   <a href="?action=notation&etoile=4" id="4" title="Donner 4 étoiles">☆</a>
+                                                   <a href="?action=notation&etoile=3" id="3" title="Donner 3 étoiles">☆</a>
+                                                   <a href="?action=notation&etoile=2" id="2" title="Donner 2 étoiles">☆</a>
+                                                   <a href="?action=notation&etoile=1" id="1" title="Donner 1 étoile">☆</a>
                                                 </div>
                                                 
                                                     <div class="avis">
@@ -60,7 +61,7 @@ class ActionNoteCommentaire extends Action {
                                                 
                                             </div>
                                         </form>
-                                        <button type="button" class="btnC" onclick="closePopup()">Fermer</button>
+                                        <button type="reset" class="btnC" onclick="closePopup()">Fermer</button>
                   
                                     </div>
                                 </div>    
