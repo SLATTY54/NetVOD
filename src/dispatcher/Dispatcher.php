@@ -3,6 +3,7 @@
 namespace netvod\dispatcher;
 
 use netvod\actions\DisplayCatalogueAction;
+use netvod\actions\DisplaySerieAction;
 use netvod\actions\WelcomeAction;
 use netvod\actions\ActionLogin;
 use netvod\actions\SignUpAction;
@@ -24,21 +25,21 @@ class Dispatcher
                 $act = new DisplayCatalogueAction();
                 $html = $act->execute();
                 break;
+            case'serie':
+                $act = new DisplaySerieAction();
+                $html = $act->execute();
+                break;
             case 'login':
                 $act = new ActionLogin();
                 $html = $act->execute();
                 break;
-
             case 'signup':
                 $act = new SignUpAction();
                 $html = $act->execute();
                 break;
-
             default:
-
                 $act = new WelcomeAction();
                 $html = $act->execute();
-
                 break;
         }
         $this->renderPage($html);
