@@ -6,6 +6,7 @@ use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
 use netvod\actions\AddSerieFavourite;
+use netvod\actions\lectureEpisodeAction;
 use netvod\actions\WelcomeAction;
 use netvod\actions\ActionLogin;
 use netvod\actions\SignUpAction;
@@ -48,6 +49,12 @@ class Dispatcher
 
             case 'signup':
                 $act = new SignUpAction();
+                $html = $act->execute();
+                break;
+
+        // si l'utilisateur clique sur un episode d'une serie
+            case 'episode':
+                $act = new lectureEpisodeAction();
                 $html = $act->execute();
                 break;
             case"pref":
