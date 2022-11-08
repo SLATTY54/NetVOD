@@ -31,3 +31,67 @@
     transform: translate(-50%,-50%) scale(1);
     animation: open-popup 0.5s normal;
 }
+
+.rating {
+    direction: rtl;
+}
+
+.rating a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 3em;
+    transition: color .4s;
+}
+
+.rating a:hover,
+.rating a:focus,
+.rating a:hover ~ a,
+.rating a:focus ~ a,
+.rating a:checked ~ a{
+    color: red;
+    cursor: pointer;
+}
+.avis{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.commentaire{
+    background-color: #dddddd;
+    color: #666666;
+    padding: 1em;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    outline: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.4;
+    width: 250px;
+    height: 100px;
+    transition: all 0.2s;
+    resize: none;
+
+}
+
+.btnE{
+    margin-top: 2%;
+}
+
+.commentaire:hover{
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+
+.commentaire:focus{
+    cursor: text;
+    color: #333333;
+    background-color: white;
+    border-color: #333333;
+}
+
+
+
+
+
+
+
