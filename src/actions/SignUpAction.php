@@ -57,7 +57,7 @@ class SignUpAction extends Action
                 <body>
                 <form method="post" action="?action=signup">
                 <video autoplay muted loop id="trailer">
-                    <source src="../resources/netvod_trailer.mov" type="video/mp4"></video>
+                    <source src="../resources/netvod_trailer.mp4" type="video/mp4"></video>
                 <img id="logo" src="../resources/logo.png" alt="logo">
                 
                 <div class="connexion">
