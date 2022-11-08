@@ -1,6 +1,8 @@
 <?php
 
-namespace database;
+namespace netvod\database;
+
+
 
 use PDO;
 
@@ -24,7 +26,6 @@ class ConnectionFactory
                 PDO::ATTR_EMULATE_PREPARES => false,
                 PDO::ATTR_STRINGIFY_FETCHES => false,
             ]);
-
             self::$db->prepare('SET NAMES \'utf8\'')->execute();
         }
         return self::$db;

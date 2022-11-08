@@ -3,6 +3,8 @@
 namespace netvod\dispatcher;
 
 use netvod\actions\WelcomeAction;
+use netvod\actions\ActionLogin;
+use netvod\actions\SignUpAction;
 
 class Dispatcher
 {
@@ -17,6 +19,16 @@ class Dispatcher
     public function run(): void
     {
         switch ($this->action) {
+            case 'login':
+                $act = new ActionLogin();
+                $html = $act->execute();
+                break;
+
+            case 'signup':
+                $act = new SignUpAction();
+                $html = $act->execute();
+                break;
+
         // si l'utilisateur clique sur un episode d'une serie
             case 'episode':
                 $act = new lectureEpisodeAction();
