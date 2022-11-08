@@ -12,7 +12,9 @@ class AddSerieFavourite extends Action
 
 
         $user = unserialize($_SESSION['user']);
-        Favourite::addToFavourite($user->__get("id"), $_GET['id']);
+        $id_user = $user->__get("id");
+        $id_serie = $_GET['id'];
+
 
         $html = <<< HEREDOC
                         <html lang="fr">
@@ -21,7 +23,18 @@ class AddSerieFavourite extends Action
                             </head>
                             <body>
                                 <div>
-                                    <p>Ajout de ta série préférée</p>
+                HEREDOC;
+
+        if (Favourite::isAlreadyFavourite($id_user, $id_serie)) {
+            $html .= "<p>Ta serie est déja dans tes favoris ! :(</p>";
+        } else {
+            Favourite::addToFavourite($id_user, $id_serie);
+            $html .= "<p>Ta serie a bien été ajoutée à tes favoris !</p>";
+        }
+
+
+        $html .= <<< HEREDOC
+
                                 </div>
                             </body>
                         </html>
