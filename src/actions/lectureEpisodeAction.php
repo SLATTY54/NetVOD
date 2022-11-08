@@ -16,9 +16,13 @@ class lectureEpisodeAction extends Action
 
     public function execute(): string
     {
-        // TODO: Implement execute() method.
         $episode = $_GET['episode_id'];
+        // assainissement de l id de l episode
+        $episode = filter_var($episode, FILTER_SANITIZE_NUMBER_INT);
+        $existe = false;
+
         $attributs = $this->getEpisode($episode);
+
         $html = $this->render($attributs);
         return $html;
     }
@@ -29,30 +33,39 @@ class lectureEpisodeAction extends Action
         $sql = "SELECT * FROM episode WHERE id = :episode_id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['episode_id' => $episode]);
-        $data = $stmt->fetch();
-        return $data;
+        // veri si l episode existe
+        if ($stmt->rowCount() > 0) {
+            $data = $stmt->fetch();
+            return $data;
+        }
+        // si l'utilisateur a touche a l url et rentre un id d episode qui n existe pas
+        echo 'episode id inexistant';
+        return [];
     }
 
-    // TODO ajouter methode getDatabase
     public function render(array $data): string
     {
         return <<<END
+        <html>
+            <head>
+            <title>NetVOD</title>
+            <link href="./css/epRendererStyle.css" rel="stylesheet">
+
+            </head>
         <div class="container">
             <div class="row">
                 <div class="col-12">
+               
                     <h1>{$data['titre']}</h1>
-                    <p{$data['resume']}</p>
-                    <p>durée : {$data['duree']}</p>
+                    <div class="duree">{$data['duree']}</div>
+                    <p>{$data['resume']}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
                     <video controls>
                         <source src="../ressources/video/{$data['file']}" type="video/mp4">
                     </video>
-                </div>
-            </div>
         </div>
+        </html> 
         END;
     }
 }
