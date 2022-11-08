@@ -3,6 +3,7 @@
 namespace netvod\dispatcher;
 
 use netvod\actions\DisplayCatalogueAction;
+use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
 use netvod\actions\WelcomeAction;
 use netvod\actions\ActionLogin;
@@ -36,6 +37,10 @@ class Dispatcher
             case 'signup':
                 $act = new SignUpAction();
                 $html = $act->execute();
+                break;
+            case"pref":
+                $act = new DisplayPreferencesAction();
+                $html= $act->execute();
                 break;
             default:
                 $act = new WelcomeAction();
