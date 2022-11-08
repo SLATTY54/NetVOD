@@ -21,7 +21,7 @@ class Dispatcher
     public function run(): void
     {
         switch ($this->action) {
-            case "add-serie-favourite":
+            case "favourite":
                 $act = new AddSerieFavourite();
                 $html = $act->execute();
                 break;
