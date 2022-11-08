@@ -9,6 +9,8 @@ namespace netvod\actions;
 // TODO ajouter un bouton pour revenir a la liste des episodes
 // TODO avancer / reculer de 10 secondes
 
+use netvod\database\ConnectionFactory;
+
 class lectureEpisodeAction extends Action
 {
 
@@ -23,8 +25,8 @@ class lectureEpisodeAction extends Action
 
     public function getEpisode($episode): array
     {
-        $pdo = \database\ConnectionFactory::makeConnection();
-        $sql = "SELECT * FROM episode WHERE episode_id = :episode_id";
+        $pdo = ConnectionFactory::makeConnection();
+        $sql = "SELECT * FROM episode WHERE id = :episode_id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['episode_id' => $episode]);
         $data = $stmt->fetch();
@@ -46,7 +48,7 @@ class lectureEpisodeAction extends Action
             <div class="row">
                 <div class="col-12">
                     <video controls>
-                        <source src="{$data['file']}" type="video/mp4">
+                        <source src="../ressources/video/{$data['file']}" type="video/mp4">
                     </video>
                 </div>
             </div>

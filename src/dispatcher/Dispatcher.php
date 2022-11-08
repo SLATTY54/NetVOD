@@ -2,6 +2,7 @@
 
 namespace netvod\dispatcher;
 
+use netvod\actions\lectureEpisodeAction;
 use netvod\actions\WelcomeAction;
 use netvod\actions\ActionLogin;
 use netvod\actions\SignUpAction;
