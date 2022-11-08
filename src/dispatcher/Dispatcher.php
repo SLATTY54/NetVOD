@@ -2,6 +2,7 @@
 
 namespace netvod\dispatcher;
 
+use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\WelcomeAction;
 use netvod\actions\ActionLogin;
 use netvod\actions\SignUpAction;
@@ -19,6 +20,10 @@ class Dispatcher
     public function run(): void
     {
         switch ($this->action) {
+            case'catalogue':
+                $act = new DisplayCatalogueAction();
+                $html = $act->execute();
+                break;
             case 'login':
                 $act = new ActionLogin();
                 $html = $act->execute();
