@@ -5,6 +5,7 @@ namespace netvod\dispatcher;
 use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
+use netvod\actions\AddSerieFavourite;
 use netvod\actions\WelcomeAction;
 use netvod\actions\ActionLogin;
 use netvod\actions\SignUpAction;
@@ -30,10 +31,15 @@ class Dispatcher
                 $act = new DisplaySerieAction();
                 $html = $act->execute();
                 break;
+            case "favourite":
+                $act = new AddSerieFavourite();
+                $html = $act->execute();
+                break;
             case 'login':
                 $act = new ActionLogin();
                 $html = $act->execute();
                 break;
+
             case 'signup':
                 $act = new SignUpAction();
                 $html = $act->execute();
@@ -43,8 +49,10 @@ class Dispatcher
                 $html= $act->execute();
                 break;
             default:
+
                 $act = new WelcomeAction();
                 $html = $act->execute();
+
                 break;
         }
         $this->renderPage($html);

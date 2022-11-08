@@ -2,7 +2,7 @@
 
 namespace netvod\actions;
 
-class welcomeAction extends Action
+class WelcomeAction extends Action
 {
     public function execute(): string
     {
