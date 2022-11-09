@@ -3,6 +3,7 @@
 namespace netvod\dispatcher;
 
 use netvod\actions\DisplayCatalogueAction;
+use netvod\actions\DisplayCommentaireAction;
 use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
 use netvod\actions\AddSerieFavourite;
@@ -59,6 +60,10 @@ class Dispatcher
                 break;
             case"pref":
                 $act = new DisplayPreferencesAction();
+                $html= $act->execute();
+                break;
+            case"commentaire":
+                $act = new DisplayCommentaireAction();
                 $html= $act->execute();
                 break;
             default:
