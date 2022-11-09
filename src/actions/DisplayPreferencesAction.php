@@ -18,13 +18,16 @@ class DisplayPreferencesAction extends Action{
                         <title>Catalogue</title>
                         <link href="./css/accueil_style.css" rel="stylesheet">
                     </head>
-                <div>
-                    <a href="?action=catalogue">Catalogue</a>
-                </div>
-                <div class="container">
-                    <div class="preferences">
-                        <h1>Vos Préférences</h1>
-                        <div class="listPref">
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h1>Votre Accueil</h1>
+                        </div>
+                        <div class="fonction">
+                            <a href="?action=catalogue">Catalogue</a>
+                        </div>
+                            <div class="listPref">
+                                <h2>Vos Preferences</h2>
                         
             end;
             $db = ConnectionFactory::makeConnection();
@@ -46,7 +49,7 @@ class DisplayPreferencesAction extends Action{
             $html.=<<<end
                             </div>
                         </div>
-                    </div>
+                    </body>
                 </html>
             end;
         }
