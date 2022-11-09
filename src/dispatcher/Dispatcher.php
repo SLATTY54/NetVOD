@@ -73,8 +73,6 @@ class Dispatcher
             case"commentaire":
                 $act = new DisplayCommentaireAction();
                 $html= $act->execute();
-                $act = new DisplayEnCoursAction();
-                $html .= $act->execute();
                 break;
 
             default:
