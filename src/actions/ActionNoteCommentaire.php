@@ -40,8 +40,8 @@ class ActionNoteCommentaire extends Action {
             return $html;
         }
 
-        public function renderHtml(bool $popup):string{
-
+        public function renderHtml(bool $popup,bool $exc):string
+        {
             $nbEtoiles =0;
             $html = <<<HEREDOC
                     <body xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
@@ -105,19 +105,7 @@ class ActionNoteCommentaire extends Action {
                         </body>
                     </html>
                 HEREDOC;
-
-
-
-
-
              return $html;
 
         }
-
-
-
-
-
-
-
 }
