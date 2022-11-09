@@ -42,9 +42,10 @@ class Dispatcher
                 $act = new DisplaySerieAction();
                 $html = $act->execute().$retour;
                 break;
+            // Ajouter une série parmi ses favoris (POST only)
             case "favourite":
                 $act = new AddSerieFavourite();
-                $html = $act->execute().$retour;
+                $html = $act->execute();
                 break;
             case 'login':
                 $act = new ActionLogin();
