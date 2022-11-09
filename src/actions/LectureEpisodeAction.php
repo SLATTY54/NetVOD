@@ -45,27 +45,53 @@ class LectureEpisodeAction extends Action
 
     public function render(array $data): string
     {
-        return <<<END
+        $html = <<< END
         <html>
             <head>
             <title>NetVOD</title>
-            <link href="./css/epRendererStyle.css" rel="stylesheet">
+            <link href="./css/EpRendererStyle.css" rel="stylesheet">
+                                      <link href="./css/Notation-style.css" rel="stylesheet">
+                          <meta name="viewport" content="width=device-with,initial-scale=1.0">
 
             </head>
+            <body xmlns="http://www.w3.org/1999/html">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-               
+            <div class="top">
                     <h1>{$data['titre']}</h1>
-                    <div class="duree">{$data['duree']}</div>
+                    <div class="duree">
+                    <script>
+                    var dureeRaw = {$data['duree']};
+                    if (dureeRaw < 60) {
+                        document.write(dureeRaw + "min");
+                    } else {
+                        var dureeH = Math.floor(dureeRaw / 60);
+                        var dureeMin = dureeRaw % 60;
+                        document.write(dureeH + "h" + dureeMin + "min");
+                    }
+                    </script>
+                    </div>
+                     <div class ="button">
+                        <a href="index.php?action=serie&serie_id={$data['serie_id']}"><button>Retour</button></a>
+        END;
+
+        $act = new ActionNoteCommentaire($data['serie_id']);
+        $html .= $act->execute();
+
+        $html .= <<< END
+                    </div>   
+
+            </div>  
                     <p>{$data['resume']}</p>
-                </div>
-            </div>
+                    
+        </div>
                     <video controls>
                         <source src="../ressources/video/{$data['file']}" type="video/mp4">
                     </video>
-        </div>
+                   </body> 
+        
         </html> 
         END;
+
+        return $html;
     }
 }

@@ -4,42 +4,36 @@ namespace netvod\actions;
 
 use netvod\classes\Favourite;
 
+/**
+ * Action permettant d'ajouter sa série préférée et ne gère que la méthode POST
+ */
 class AddSerieFavourite extends Action
 {
 
     public function execute(): string
     {
 
+        // méthode POST
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $user = unserialize($_SESSION['user']);
-        $id_user = $user->__get("id");
-        $id_serie = $_GET['id'];
+            // on récupère l'user via la session
+            $user = unserialize($_SESSION['user']);
+            $id_user = $user->__get("id");
 
+            // on récupère l'ID de la série via le POST
+            $id_serie = $_POST['serie_id'];
 
-        $html = <<< HEREDOC
-                        <html lang="fr">
-                            <head><title>NetVod</title>
-                                  <link href="./css/welcome-style.css" rel="stylesheet">
-                            </head>
-                            <body>
-                                <div>
-                HEREDOC;
+            // si la série n'est pas déjà dans les favoris de l'utilisateur, ajouter la série aux favoris
+            if (!Favourite::isAlreadyFavourite($id_user, $id_serie)) {
+                Favourite::addToFavourite($id_user, $id_serie);
+            }
 
-        if (Favourite::isAlreadyFavourite($id_user, $id_serie)) {
-            $html .= "<p>Ta serie est déja dans tes favoris ! :(</p>";
-        } else {
-            Favourite::addToFavourite($id_user, $id_serie);
-            $html .= "<p>Ta serie a bien été ajoutée à tes favoris !</p>";
         }
 
+        // Peu importe le résultat, rafraîchir la page et on ne renvoit pas de réponse HTML
+        header('Location: ?action=catalogue');
+        return "";
 
-        $html .= <<< HEREDOC
-
-                                </div>
-                            </body>
-                        </html>
-                HEREDOC;
-
-        return $html;
     }
+
 }
