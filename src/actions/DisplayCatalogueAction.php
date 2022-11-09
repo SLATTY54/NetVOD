@@ -44,14 +44,14 @@ class DisplayCatalogueAction extends Action{
                     
                 END;
         $bd = ConnectionFactory::makeConnection();
-        //comptez le nombre de séries
+
         $stmt = $bd->prepare('SELECT max(id) as maxim FROM serie');
         $stmt->execute();
         $nbSeries = $stmt->fetch(PDO::FETCH_ASSOC);
         $nbSeries = $nbSeries['maxim'];
 
         $c = 1;
-        while(count($titles)+1 != $nbSeries){
+        while(count($titles) != $nbSeries){
             $cApres = $c+1;
             $query=$bd->prepare("SELECT id,titre,img FROM serie");
             $query->execute();
@@ -62,25 +62,32 @@ class DisplayCatalogueAction extends Action{
                 }
                 $titre=$row['titre'];
 
-                if (in_array($titre,$titles)){
-                    break;
-                }
-
-                $id=$row['id'];
-                $img=$row['img'];
-                $html.=<<<end
+                if (!in_array($titre,$titles)){
+                    $id=$row['id'];
+                    $img=$row['img'];
+                    $html.=<<<end
                         <div class="item">
                             <br><a href='?action=serie&serie_id=$id'>
-                                    <img src=../ressources/images/$img href='?action=serie&serie_id=$id' style="width:341px;height:192px ">
+                                    <img src=../ressources/images/$img href='?action=serie&serie_id=$id' style="width:440px;height:210px ">
                                     <h1 class="heading">$titre</h1>
                                 </a>
-                            <button type="submit">ajouter au favoris</button>
+                            <button type="submit" class="fav" id="stars">ajouter au favoris</button>
+                            
+                            <div class="click">
+                                <span class="fa fa-star-o"></span>
+                                <div class="ring"></div>
+                                <div class="ring2"></div>
+                                <p class="info">Added to favourites!</p>
+                            </div>
                         </div>
-                end;
-                $titles[]=$titre;
-                $compteur++;
+                    end;
+                    $titles[]=$titre;
+                    $compteur++;
+                }
+
+
             }
-            if (count($titles)+1 != $nbSeries){
+            if (count($titles) != $nbSeries){
                 $html.=<<<HEREDOC
                             <a href="#section$cApres" class="arrow__btn right-arrow">›</a>
                             </section>
@@ -88,9 +95,11 @@ class DisplayCatalogueAction extends Action{
                                 <a href="#section$c" class="arrow__btn left-arrow">‹</a>
                         HEREDOC;
             }else{
-                $html.=<<<HEREDOC
-                            </section>
-                        HEREDOC;
+                if (count($titles) === $nbSeries){
+                    $html.=<<<HEREDOC
+                                </section>
+                            HEREDOC;
+                }
             }
             $c++;
         }
@@ -99,6 +108,35 @@ class DisplayCatalogueAction extends Action{
                        
                     </div>
                     </div>
+                    <script>
+                            $('.click').click(function() {
+                                if ($('span').hasClass("fa-star")) {
+                                        $('.click').removeClass('active')
+                                    setTimeout(function() {
+                                        $('.click').removeClass('active-2')
+                                    }, 30)
+                                        $('.click').removeClass('active-3')
+                                    setTimeout(function() {
+                                        $('span').removeClass('fa-star')
+                                        $('span').addClass('fa-star-o')
+                                    }, 15)
+                                } else {
+                                    $('.click').addClass('active')
+                                    $('.click').addClass('active-2')
+                                    setTimeout(function() {
+                                        $('span').addClass('fa-star')
+                                        $('span').removeClass('fa-star-o')
+                                    }, 150)
+                                    setTimeout(function() {
+                                        $('.click').addClass('active-3')
+                                    }, 150)
+                                    $('.info').addClass('info-tog')
+                                    setTimeout(function(){
+                                        $('.info').removeClass('info-tog')
+                                    },1000)
+                                }
+                            })
+                    </script>
                     </body>
                     </html>
                 HEREDOC;
