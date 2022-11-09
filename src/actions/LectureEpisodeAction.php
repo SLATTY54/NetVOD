@@ -85,7 +85,7 @@ class LectureEpisodeAction extends Action
                     
         </div>
                     <video controls>
-                        <source src="../ressources/video/{$data['file']}" type="video/mp4">
+                        <source src="../resources/videos/{$data['file']}" type="video/mp4">
                     </video>
                    </body> 
         
