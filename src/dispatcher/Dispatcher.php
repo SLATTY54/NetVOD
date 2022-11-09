@@ -2,7 +2,7 @@
 
 namespace netvod\dispatcher;
 
-use netvod\actions\ActionLogin;
+use netvod\actions\LoginAction;
 use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\DisplayCommentaireAction;
 use netvod\actions\DisplayEnCoursAction;
@@ -46,17 +46,16 @@ class Dispatcher
                 $act = new FavouriteAction();
                 $html = $act->execute();
                 break;
+            // Se connecter au site
             case 'login':
-                $act = new ActionLogin();
+                $act = new LoginAction();
                 $html = $act->execute();
                 break;
-
+            // S'enregister sur le site
             case 'signup':
                 $act = new SignUpAction();
                 $html = $act->execute();
                 break;
-
-
             // si l'utilisateur clique sur un episode d'une serie
             case 'episode':
                 $act = new LectureEpisodeAction();
@@ -64,7 +63,6 @@ class Dispatcher
                 $act = new EnCoursAction();
                 $act->execute();
                 break;
-
             case"accueil":
                 $act = new DisplayPreferencesAction();
                 $html = $act->execute();
