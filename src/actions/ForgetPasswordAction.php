@@ -7,6 +7,9 @@ use netvod\classes\Authentification;
 class ForgetPasswordAction extends Action
 {
 
+    private $token;
+
+
     public function execute(): string
     {
         $html = <<<HTML
@@ -29,12 +32,12 @@ class ForgetPasswordAction extends Action
                 $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
                 if (Authentification::isRegistered($email))
                 {
-                    $token = openssl_random_pseudo_bytes(8);
-                    $token = bin2hex($token);
+                    // TODO : export this to a token generation static function (in Authentification class ? or in a new class ?)
+                    $this->token = openssl_random_pseudo_bytes(8);
+                    $this->token = bin2hex($this->token);
 
-                    $html .= <<<HEREDOC
-                    <a href="?action=forget_password&token={$token}">réinitialisé mot de passe</a>
-                    HEREDOC;
+                    // TODO : redirect to a page to change password
+                    $html .= $this->renderChangingPassword($this->token);
 
                 }
                 else
@@ -47,11 +50,12 @@ class ForgetPasswordAction extends Action
         return $html;
     }
 
+
     public function renderHtml(bool $errorEmail): string
     {
         $html = <<<HEREDOC
                 <body>
-                <form method="post" action="?action=forget_password">
+                <form method="post" action="?action=forget_password&token={$this->token}"> 
                 <video autoplay muted loop id="trailer">
                     <source src="../resources/netvod_trailer.mp4" type="video/mp4"></video>
                 <img id="logo" src="../resources/logo.png" alt="logo">
@@ -86,5 +90,14 @@ class ForgetPasswordAction extends Action
         HEREDOC;
 
         return $html;
+    }
+
+
+    public function renderChangingPassword(string $token): string
+    {
+        // TODO : use this <a href="?action=forget_password&token={$token}"></a> to put the token in the url or line 58
+        $hmtl = "<p>$token</p>";
+
+        return $hmtl;
     }
 }
