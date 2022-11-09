@@ -18,11 +18,11 @@ class DisplayCatalogueAction extends Action
         foreach ($query->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $id = $row['id'];
             $titre = $row['titre'];
-            $img = $row['img'];
+            $img = "../ressources/images/".$row['img'];
             $html .= <<<end
                 <div class=$titre>
+                    <img src=$img href='?action=serie&serie_id=$id' width="300" height="200">
                     <br><a href='?action=serie&serie_id=$id'>$titre</a>
-                    <img src=$img>
                     <a href="?action=favourite&id=$id">⭐</a>
                 </div>
             end;
