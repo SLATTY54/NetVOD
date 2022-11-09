@@ -49,7 +49,12 @@ class DisplaySerieAction extends Action
                     </div>
                 end;
         }
-
+        // ajout du bouton retour
+        $html .= <<<end
+                <div class="footer">
+                    <a href="?action=accueil">retour à l'accueil</a>
+                </div>
+            end;
         return $html;
     }
 }
