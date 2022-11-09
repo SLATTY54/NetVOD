@@ -2,6 +2,7 @@
 
 namespace netvod\actions;
 
+use netvod\classes\Favourite;
 use netvod\database\ConnectionFactory;
 use PDO;
 
@@ -10,7 +11,7 @@ class DisplayCatalogueAction extends Action
 
     public function execute(): string
     {
-        $html =<<<END
+        $html = <<<END
                     <html lang="en">
                         <head>
                             <title>NetVod</title>
@@ -30,18 +31,30 @@ class DisplayCatalogueAction extends Action
         foreach ($query->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $id = $row['id'];
             $titre = $row['titre'];
-            $img = "../ressources/images/" . $row['img'];
+            $img = "../resources/images/" . $row['img'];
             $html .= <<<end
-                    <div class=$titre>
-                        <img src=$img href='?action=serie&serie_id=$id' width="300" height="200">
-                        <br><a href='?action=serie&serie_id=$id'>$titre</a>
-                    end;
+                <div class=$titre>
+                    <img src=$img href='?action=serie&serie_id=$id' width="300" height="200">
+                    <br><a href='?action=serie&serie_id=$id'>$titre</a>
+                end;
 
-            $html .= "<a href='?action=favourite&id=$id'>⭐</a>";
+            // Cette partie permet de gérer les favoris
+            $user = unserialize($_SESSION['user']);
+            $id_user = $user->__get("id");
 
-            $html .= "</div>";
+            $alreadyFav = Favourite::isAlreadyFavourite($id_user, $id);
+            $star = $alreadyFav ? "★" : "⭐";
+
+            $html .= <<< END
+                    <form method="post" action="?action=favourite&callback={$_SERVER['QUERY_STRING']}">
+                        <input type="hidden" name="serie_id" value="$id">
+                        <button type="submit">$star</button>
+                    </form>
+                </div>
+                END;
+
         }
-        $html .=<<<END
+        $html .= <<<END
                                 </div>
                             </div>
                         </body>
@@ -51,7 +64,8 @@ class DisplayCatalogueAction extends Action
         return $html;
     }
 
-    public function rendererHtml(){
+    public function rendererHtml()
+    {
 
     }
 

@@ -14,7 +14,7 @@ class DisplayEnCoursAction extends Action{
             $user=unserialize($_SESSION['user']);
             $html=<<<end
                 <div class="current">
-                    <h1>Vos Programmes en cours</h1>
+                    <h2>Vos Programmes en cours</h2>
                     <div class="listCurrent">
                         
             end;
