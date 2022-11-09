@@ -17,7 +17,7 @@ body {
     white-space: nowrap;
 }
 
-.btn{
+.btnI{
     width: 12%;
     height: 50px;
     margin-top: 5%;
@@ -32,6 +32,24 @@ body {
     background-color: #e50914;
     animation: buttone 2s normal;
 }
+.btnC{
+    width: 12%;
+    height: 50px;
+    margin-top: 1%;
+    margin-left: 44%;
+    margin-bottom: auto;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    background-color: #1f2023;
+    animation: buttone 2s normal;
+}
+
+
+
 @keyframes buttone {
     0% {
         opacity: 0;
