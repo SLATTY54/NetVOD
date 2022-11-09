@@ -67,6 +67,8 @@ class Dispatcher
             case"accueil":
                 $act = new DisplayPreferencesAction();
                 $html= $act->execute();
+                $act = new DisplayEnCoursAction();
+                $html.= $act->execute();
                 break;
             case"commentaire":
                 $act = new DisplayCommentaireAction();

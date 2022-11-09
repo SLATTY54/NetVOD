@@ -39,10 +39,16 @@ class EnCoursAction
 
     public function addToList($idSerie, $idUser): void {
         $pdo = ConnectionFactory::makeConnection();
-        $sql = "INSERT INTO EnCours (idUser,idSerie) VALUES (?,?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1,$idUser);
-        $stmt->bindParam(2,$idSerie);
+        $stmt = $pdo->prepare("SELECT * FROM EnCours WHERE idSerie=? AND idUser=?");
+        $stmt->bindParam(1,$idSerie);
+        $stmt->bindParam(2,$idUser);
         $stmt->execute();
+        if($stmt->rowCount()===0){
+            $sql = "INSERT INTO EnCours (idUser,idSerie) VALUES (?,?)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(1,$idUser);
+            $stmt->bindParam(2,$idSerie);
+            $stmt->execute();
+        }
     }
 }
