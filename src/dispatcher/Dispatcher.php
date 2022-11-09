@@ -30,7 +30,7 @@ class Dispatcher
 
         $retour=<<<end
             <div class="footer">
-                <a href="?action=pref">retour à l'accueil</a>
+                <a href="?action=accueil">retour à l'accueil</a>
             </div>
         end;
         switch ($this->action) {
@@ -40,11 +40,11 @@ class Dispatcher
                 break;
             case'serie':
                 $act = new DisplaySerieAction();
-                $html = $act->execute();
+                $html = $act->execute().$retour;
                 break;
             case "favourite":
                 $act = new AddSerieFavourite();
-                $html = $act->execute();
+                $html = $act->execute().$retour;
                 break;
             case 'login':
                 $act = new ActionLogin();
