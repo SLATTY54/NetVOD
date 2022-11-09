@@ -13,6 +13,9 @@ class DisplayPreferencesAction extends Action{
         }else{
             $user=unserialize($_SESSION['user']);
             $html=<<<end
+                <div class="sections">
+                    <a href="?action=catalogue">Catalogue</a>
+                </div>
                 <div class="preferences">
                     <h1>Vos Préférences</h1>
                     <div class="list">
