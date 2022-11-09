@@ -49,22 +49,37 @@ class LectureEpisodeAction extends Action
         <html>
             <head>
             <title>NetVOD</title>
-            <link href="./css/epRendererStyle.css" rel="stylesheet">
+            <link href="./css/EpRendererStyle.css" rel="stylesheet">
 
             </head>
+            <body>
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-               
+            <div class="top">
                     <h1>{$data['titre']}</h1>
-                    <div class="duree">{$data['duree']}</div>
+                    <div class="duree">
+                    <script>
+                    var dureeRaw = {$data['duree']};
+                    if (dureeRaw < 60) {
+                        document.write(dureeRaw + "min");
+                    } else {
+                        var dureeH = Math.floor(dureeRaw / 60);
+                        var dureeMin = dureeRaw % 60;
+                        document.write(dureeH + "h" + dureeMin + "min");
+                    }
+                    </script>
+                    </div>
+                    <div class ="button">
+                        <a href="index.php?action=serie&serie_id={$data['serie_id']}"><button>Retour</button></a>
+                    </div>
+            </div>  
                     <p>{$data['resume']}</p>
-                </div>
-            </div>
+                    
+        </div>
                     <video controls>
                         <source src="../ressources/video/{$data['file']}" type="video/mp4">
                     </video>
-        </div>
+                   </body> 
+        
         </html> 
         END;
     }
