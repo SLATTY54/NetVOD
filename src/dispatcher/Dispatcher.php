@@ -7,7 +7,8 @@ use netvod\actions\DisplayCommentaireAction;
 use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
 use netvod\actions\AddSerieFavourite;
-use netvod\actions\lectureEpisodeAction;
+use netvod\actions\EnCoursAction;
+use netvod\actions\LectureEpisodeAction;
 use netvod\actions\WelcomeAction;
 use netvod\actions\ActionLogin;
 use netvod\actions\SignUpAction;
@@ -55,9 +56,11 @@ class Dispatcher
 
         // si l'utilisateur clique sur un episode d'une serie
             case 'episode':
-                $act = new lectureEpisodeAction();
+                $act = new LectureEpisodeAction();
                 $html = $act->execute();
+                $act = new EnCoursAction();
                 break;
+
             case"pref":
                 $act = new DisplayPreferencesAction();
                 $html= $act->execute();
@@ -65,7 +68,10 @@ class Dispatcher
             case"commentaire":
                 $act = new DisplayCommentaireAction();
                 $html= $act->execute();
+                $act = new DisplayEnCoursAction();
+                $html .= $act->execute();
                 break;
+
             default:
 
                 $act = new WelcomeAction();
