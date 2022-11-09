@@ -31,29 +31,51 @@
     transform: translate(-50%,-50%) scale(1);
     animation: open-popup 0.5s normal;
 }
-
 .rating {
-    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    margin: 0;
 }
 
 
-input[type="radio"] {
-    display: none;
+.note {
+    height: 40px;
+    margin-bottom: 2%;
 }
 
-.etoile:hover,
-.etoile:focus,
-.etoile:hover ~ .etoile,
-.etoile:focus ~ .etoile{
-    color: red;
-    cursor: pointer;
+.note:not(:checked) > input {
+    margin-left: auto;
+    margin-right: auto;
+    position:absolute;
+    top:-9999px;
 }
-
-.etoile {
-    color: grey;
-    font-size: 3em;
-    cursor: pointer;
-    transition: color .4s;
+.note:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color: #464545;
+}
+.note:not(:checked) > label:before {
+    content: '★ ';
+}
+.note > input:checked ~ label {
+    color: #940108;
+}
+.note:not(:checked) > label:hover,
+.note:not(:checked) > label:hover ~ label {
+    color: #940108;
+}
+.note > input:checked + label:hover,
+.note > input:checked + label:hover ~ label,
+.note > input:checked ~ label:hover,
+.note > input:checked ~ label:hover ~ label,
+.note > label:hover ~ input:checked ~ label {
+    color: #940108;
 }
 
 .avis{
