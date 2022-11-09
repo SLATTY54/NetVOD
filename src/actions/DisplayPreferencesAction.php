@@ -2,17 +2,20 @@
 
 namespace netvod\actions;
 
+use netvod\classes\Favourite;
 use netvod\database\ConnectionFactory;
 use PDO;
 
-class DisplayPreferencesAction extends Action{
+class DisplayPreferencesAction extends Action
+{
 
-    public function execute(): string{
-        if(!isset($_SESSION['user'])){
-            $html="<h1>Veuillez vous connectez</h1>";
-        }else{
-            $user=unserialize($_SESSION['user']);
-            $html=<<<end
+    public function execute(): string
+    {
+        if (!isset($_SESSION['user'])) {
+            $html = "<h1>Veuillez vous connectez</h1>";
+        } else {
+            $user = unserialize($_SESSION['user']);
+            $html = <<<end
                 <html>
                     <head>
                         <title>Catalogue</title>
@@ -32,22 +35,30 @@ class DisplayPreferencesAction extends Action{
             end;
             $db = ConnectionFactory::makeConnection();
             $stmt = $db->prepare("SELECT serie.titre as titre,serie.id as id FROM serie INNER JOIN preferences ON serie.id=preferences.id_serie WHERE preferences.id_user=?");
-            $id=$user->id;
-            $stmt->bindParam(1,$id);
+            $id = $user->id;
+            $stmt->bindParam(1, $id);
             $stmt->execute();
-            if($stmt->rowCount()===0){
-                $html.="<h2>Vous n'avez aucune série dans vos préférences</h2>";
-            }else{
-                $html.="<ul>";
-                foreach($stmt->fetchAll(PDO::FETCH_OBJ) as $row){
-                    $html.=<<<end
+            if ($stmt->rowCount() === 0) {
+                $html .= "<h2>Vous n'avez aucune série dans vos préférences</h2>";
+            } else {
+                $html .= "<ul>";
+                foreach ($stmt->fetchAll(PDO::FETCH_OBJ) as $row) {
+
+                    $id_serie = $row->id;
+
+                    // Cette partie permet de gérer les favoris
+
+                    $html .= <<< END
                     <li><a href="?action=serie&serie_id=$row->id">$row->titre</a></li>
-                        <a href="?action=supPref&serie_id=$row->id">retirer des favoris</a>
-                end;
+                    <form method="post" action="?action=favourite&callback={$_SERVER['QUERY_STRING']}">
+                        <input type="hidden" name="serie_id" value="$id_serie">
+                        <button type="submit">★</button>
+                    </form>
+                    END;
                 }
-                $html.="</ul>";
+                $html .= "</ul>";
             }
-            $html.=<<<end
+            $html .= <<<end
                             </div>
                         </div>
                     </body>

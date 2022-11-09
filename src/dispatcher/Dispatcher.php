@@ -2,17 +2,15 @@
 
 namespace netvod\dispatcher;
 
-use netvod\actions\ActionNoteCommentaire;
 use netvod\actions\ActionLogin;
-use netvod\actions\AddSerieFavourite;
 use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\DisplayCommentaireAction;
 use netvod\actions\DisplayEnCoursAction;
 use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
 use netvod\actions\EnCoursAction;
+use netvod\actions\FavouriteAction;
 use netvod\actions\LectureEpisodeAction;
-use netvod\actions\RetirerFavorisAction;
 use netvod\actions\SignUpAction;
 use netvod\actions\WelcomeAction;
 
@@ -29,7 +27,7 @@ class Dispatcher
     public function run(): void
     {
 
-        $retour=<<<end
+        $retour = <<<end
             <div class="footer">
                 <a href="?action=accueil">retour à l'accueil</a>
             </div>
@@ -37,15 +35,15 @@ class Dispatcher
         switch ($this->action) {
             case'catalogue':
                 $act = new DisplayCatalogueAction();
-                $html = $act->execute().$retour;
+                $html = $act->execute() . $retour;
                 break;
             case'serie':
                 $act = new DisplaySerieAction();
-                $html = $act->execute().$retour;
+                $html = $act->execute() . $retour;
                 break;
-            // Ajouter une série parmi ses favoris (POST only)
+            // Ajouter ou retirer une série parmi ses favoris (POST only)
             case "favourite":
-                $act = new AddSerieFavourite();
+                $act = new FavouriteAction();
                 $html = $act->execute();
                 break;
             case 'login':
@@ -57,12 +55,9 @@ class Dispatcher
                 $act = new SignUpAction();
                 $html = $act->execute();
                 break;
-            case 'supPref':
-                $act = new RetirerFavorisAction();
-                $html = $act->execute();
-                break;
 
-        // si l'utilisateur clique sur un episode d'une serie
+
+            // si l'utilisateur clique sur un episode d'une serie
             case 'episode':
                 $act = new LectureEpisodeAction();
                 $html = $act->execute();
@@ -72,13 +67,13 @@ class Dispatcher
 
             case"accueil":
                 $act = new DisplayPreferencesAction();
-                $html= $act->execute();
+                $html = $act->execute();
                 $act = new DisplayEnCoursAction();
-                $html.= $act->execute();
+                $html .= $act->execute();
                 break;
             case"commentaire":
                 $act = new DisplayCommentaireAction();
-                $html= $act->execute();
+                $html = $act->execute();
                 break;
 
             default:

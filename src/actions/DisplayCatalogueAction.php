@@ -33,27 +33,26 @@ class DisplayCatalogueAction extends Action
             $titre = $row['titre'];
             $img = "../ressources/images/" . $row['img'];
             $html .= <<<end
-                    <div class=$titre>
-                        <img src=$img href='?action=serie&serie_id=$id' width="300" height="200">
-                        <br><a href='?action=serie&serie_id=$id'>$titre</a>
-                    end;
+                <div class=$titre>
+                    <img src=$img href='?action=serie&serie_id=$id' width="300" height="200">
+                    <br><a href='?action=serie&serie_id=$id'>$titre</a>
+                end;
 
             // Cette partie permet de gérer les favoris
             $user = unserialize($_SESSION['user']);
             $id_user = $user->__get("id");
 
-            if (!Favourite::isAlreadyFavourite($id_user, $id)) {
+            $alreadyFav = Favourite::isAlreadyFavourite($id_user, $id);
+            $star = $alreadyFav ? "★" : "⭐";
 
-                $html .= <<< END
-                <form method="post" action="?action=favourite">
-                    <input type="hidden" name="serie_id" value="$id">
-                    <button type="submit">⭐</button>
-                </form>
+            $html .= <<< END
+                    <form method="post" action="?action=favourite&callback={$_SERVER['QUERY_STRING']}">
+                        <input type="hidden" name="serie_id" value="$id">
+                        <button type="submit">$star</button>
+                    </form>
+                </div>
                 END;
 
-            }
-
-            $html .= "</div>";
         }
         $html .= <<<END
                                 </div>

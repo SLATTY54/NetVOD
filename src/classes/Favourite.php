@@ -27,6 +27,28 @@ class Favourite
         $ps->bindParam(2, $id_serie);
         $ps->execute();
 
+        $db = null;
+
+    }
+
+    /**
+     * Méthode statique permettant de retirer une série favorite d'un utilisateur
+     * @param int $id_user
+     * @param int $id_serie
+     * @return void
+     */
+    public static function removeFromFavourite(int $id_user, int $id_serie)
+    {
+
+        $db = ConnectionFactory::makeConnection();
+
+        $ps = $db->prepare("DELETE FROM preferences WHERE id_user = ? AND id_serie = ?");
+        $ps->bindParam(1, $id_user);
+        $ps->bindParam(2, $id_serie);
+        $ps->execute();
+
+        $db = null;
+
     }
 
     /**
