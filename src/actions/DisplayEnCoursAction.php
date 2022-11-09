@@ -5,29 +5,26 @@ namespace netvod\actions;
 use netvod\database\ConnectionFactory;
 use PDO;
 
-class DisplayPreferencesAction extends Action{
+class DisplayEnCoursAction extends Action{
 
     public function execute(): string{
         if(!isset($_SESSION['user'])){
-            $html="<h1>Veuillez vous connectez</h1>";
+            $html="<a href='?action=login'>Veuillez vous connecter</a>";
         }else{
             $user=unserialize($_SESSION['user']);
             $html=<<<end
-                <div>
-                    <a href="?action=catalogue">Catalogue</a>
-                </div>
-                <div class="preferences">
+                <div class="current">
                     <h1>Vos Préférences</h1>
-                    <div class="listPref">
+                    <div class="listCurrent">
                         
             end;
             $db = ConnectionFactory::makeConnection();
-            $stmt = $db->prepare("SELECT serie.titre as titre,serie.id as id FROM serie INNER JOIN preferences ON serie.id=preferences.id_serie WHERE preferences.id_user=?");
+            $stmt = $db->prepare("SELECT serie.titre as titre,serie.id as id FROM serie INNER JOIN EnCours ON serie.id=EnCours.idSerie WHERE EnCours.idUser=?");
             $id=$user->id;
             $stmt->bindParam(1,$id);
             $stmt->execute();
             if($stmt->rowCount()===0){
-                $html.="<h2>Vous n'avez aucune série dans vos préférences</h2>";
+                $html.="<h2>Vous n'avez aucune série dans vos cours</h2>";
             }else{
                 $html.="<ul>";
                 foreach($stmt->fetchAll(PDO::FETCH_OBJ) as $row){

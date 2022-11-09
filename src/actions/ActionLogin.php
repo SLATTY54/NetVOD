@@ -25,7 +25,7 @@ class ActionLogin extends Action
                 $password = filter_var($_POST['password'],FILTER_SANITIZE_STRING);
                 try {
                     Authentification::authenticate($email,$password);
-                    header('Location: ?action=catalogue');
+                    header('Location: ?action=accueil');
                 }catch (AuthException $e){
                     $html.= $this->renderHtml(true);
 

@@ -2,15 +2,16 @@
 
 namespace netvod\dispatcher;
 
+use netvod\actions\ActionLogin;
+use netvod\actions\AddSerieFavourite;
 use netvod\actions\DisplayCatalogueAction;
+use netvod\actions\DisplayEnCoursAction;
 use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
-use netvod\actions\AddSerieFavourite;
 use netvod\actions\EnCoursAction;
 use netvod\actions\LectureEpisodeAction;
-use netvod\actions\WelcomeAction;
-use netvod\actions\ActionLogin;
 use netvod\actions\SignUpAction;
+use netvod\actions\WelcomeAction;
 
 class Dispatcher
 {
@@ -58,9 +59,10 @@ class Dispatcher
                 $act = new LectureEpisodeAction();
                 $html = $act->execute();
                 $act = new EnCoursAction();
+                $act->execute();
                 break;
 
-            case"pref":
+            case"accueil":
                 $act = new DisplayPreferencesAction();
                 $html= $act->execute();
                 $act = new DisplayEnCoursAction();
