@@ -2,7 +2,7 @@
 
 namespace netvod\actions;
 
-class welcomeAction extends Action
+class WelcomeAction extends Action
 {
     public function execute(): string
     {
@@ -15,7 +15,8 @@ class welcomeAction extends Action
                                 <div class="txt" contenteditable="false">
                                     NetVOD
                                 </div>
-                                <footer><button class="btn">Entrez sur le site</button></footer>
+                                <a href="?action=signup"><button class="btnI">Inscription</button></a>
+                                <a href="?action=login"><button class="btnC">Connexion</button></a>
                             </body>
                         </html>
         
