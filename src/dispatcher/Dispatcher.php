@@ -11,6 +11,7 @@ use netvod\actions\DisplayEnCoursAction;
 use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
 use netvod\actions\EnCoursAction;
+use netvod\actions\ForgetPasswordAction;
 use netvod\actions\LectureEpisodeAction;
 use netvod\actions\SignUpAction;
 use netvod\actions\WelcomeAction;
@@ -53,6 +54,11 @@ class Dispatcher
 
             case 'signup':
                 $act = new SignUpAction();
+                $html = $act->execute();
+                break;
+
+            case 'forget_password':
+                $act = new ForgetPasswordAction();
                 $html = $act->execute();
                 break;
 
