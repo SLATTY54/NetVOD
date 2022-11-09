@@ -32,15 +32,17 @@ class EnCoursAction
         return -9999;
     }
 
-    public function getUserId(): int {
-        $id = $_SESSION['user'];
-        return $id;
+    public function getUserId(): string {
+        $user = unserialize($_SESSION['user']);
+        return $user->id;
     }
 
     public function addToList($idSerie, $idUser): void {
         $pdo = ConnectionFactory::makeConnection();
-        $sql = "INSERT INTO EnCours (serie_id, user_id) VALUES (:serie_id, :user_id)";
+        $sql = "INSERT INTO EnCours (idUser,idSerie) VALUES (?,?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['serie_id' => $idSerie, 'user_id' => $idUser]);
+        $stmt->bindParam(1,$idUser);
+        $stmt->bindParam(2,$idSerie);
+        $stmt->execute();
     }
 }
