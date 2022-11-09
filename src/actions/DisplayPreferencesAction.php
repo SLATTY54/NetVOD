@@ -16,9 +16,6 @@ class DisplayPreferencesAction extends Action{
                 <div>
                     <a href="?action=catalogue">Catalogue</a>
                 </div>
-                <div class="sections">
-                    <a href="?action=catalogue">Catalogue</a>
-                </div>
                 <div class="preferences">
                     <h1>Vos Préférences</h1>
                     <div class="listPref">
