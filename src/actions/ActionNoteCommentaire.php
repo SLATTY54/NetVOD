@@ -8,17 +8,15 @@ use netvod\Exceptions\CommentException;
 
 class ActionNoteCommentaire extends Action {
 
+        private int $id_serie;
 
+        public function __construct(int $id_serie)
+        {
+            $this->id_serie = $id_serie;
+        }
 
-        public function execute(): string {
-            $html = <<<HEREDOC
-                <html lang="en">
-                    <head><title>NetVod</title>
-                          <link href="./css/Notation-style.css" rel="stylesheet">
-                          <meta name="viewport" content="width=device-with,initial-scale=1.0">
-                    </head>
-                    
-            HEREDOC;
+    public function execute(): string {
+            $html = "";
 
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $html .= $this->renderHtml(true,false);
@@ -30,7 +28,7 @@ class ActionNoteCommentaire extends Action {
                     $id = $user->__get('id');
 
                     try {
-                        Comment::addComment($id, 3, $commentaire, $nbetoile);
+                        Comment::addComment($id, $this->id_serie, $commentaire, $nbetoile);
                     }catch (CommentException $e){
                         $html .= $this->renderHtml(true,true);
                     }
@@ -42,12 +40,10 @@ class ActionNoteCommentaire extends Action {
 
         public function renderHtml(bool $popup,bool $exc):string
         {
-            $nbEtoiles =0;
-            $html = <<<HEREDOC
-                    <body xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-                                <div class="container">
-                                    <button type="submit" onclick="openPopup()">click me!</button>
-                    HEREDOC;
+            $html = <<<END
+                        <button type='submit' onclick='openPopup()'>Donner votre avis</button>
+                        END;
+
             if ($exc){
                 $html .= <<<HEREDOC
                     <div class="erreur">
@@ -55,6 +51,7 @@ class ActionNoteCommentaire extends Action {
                     </div>
                 HEREDOC;
             }
+
             $html .= <<<HEREDOC
                                     <div class="popup" id="popup">
                                         <form method="post" >
@@ -101,9 +98,6 @@ class ActionNoteCommentaire extends Action {
                                         }
                                 </script>
                            
-                       
-                        </body>
-                    </html>
                 HEREDOC;
              return $html;
 

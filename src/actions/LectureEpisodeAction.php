@@ -45,14 +45,16 @@ class LectureEpisodeAction extends Action
 
     public function render(array $data): string
     {
-        return <<<END
+        $html = <<< END
         <html>
             <head>
             <title>NetVOD</title>
             <link href="./css/EpRendererStyle.css" rel="stylesheet">
+                                      <link href="./css/Notation-style.css" rel="stylesheet">
+                          <meta name="viewport" content="width=device-with,initial-scale=1.0">
 
             </head>
-            <body>
+            <body xmlns="http://www.w3.org/1999/html">
         <div class="container">
             <div class="top">
                     <h1>{$data['titre']}</h1>
@@ -68,9 +70,16 @@ class LectureEpisodeAction extends Action
                     }
                     </script>
                     </div>
-                    <div class ="button">
+                     <div class ="button">
                         <a href="index.php?action=serie&serie_id={$data['serie_id']}"><button>Retour</button></a>
-                    </div>
+        END;
+
+        $act = new ActionNoteCommentaire($data['serie_id']);
+        $html .= $act->execute();
+
+        $html .= <<< END
+                    </div>   
+
             </div>  
                     <p>{$data['resume']}</p>
                     
@@ -82,5 +91,7 @@ class LectureEpisodeAction extends Action
         
         </html> 
         END;
+
+        return $html;
     }
 }

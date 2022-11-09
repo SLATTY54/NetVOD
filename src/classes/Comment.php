@@ -11,8 +11,9 @@ class Comment
 
     public static function addComment(int $id_user, int $id_serie, string $commentaire, int $note): void
     {
-        if (!self::alreadyComment($id_user,$id_serie))
-        {
+        if (self::alreadyComment($id_user, $id_serie)) {
+            throw new CommentException('Vous avez déjà commenté cette série');
+        } else {
             $db = ConnectionFactory::makeConnection();
             $stmt = $db->prepare('INSERT INTO notation VALUES (?, ?, ?, ?)');
             $stmt->execute([$id_user, $id_serie, $commentaire, $note]);
@@ -28,10 +29,9 @@ class Comment
         $stmt->execute([$id_user, $id_serie]);
         $comment = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        if ($comment){
-            return throw new CommentException('Vous avez déjà commenté cette série');
+        if ($comment) {
+            return true;
         }
-        echo 'ok';
         return false;
 
     }
