@@ -2,6 +2,7 @@
 
 namespace netvod\actions;
 
+use netvod\classes\Favourite;
 use netvod\database\ConnectionFactory;
 use PDO;
 
@@ -10,7 +11,7 @@ class DisplayCatalogueAction extends Action
 
     public function execute(): string
     {
-        $html =<<<END
+        $html = <<<END
                     <html lang="en">
                         <head>
                             <title>NetVod</title>
@@ -37,11 +38,24 @@ class DisplayCatalogueAction extends Action
                         <br><a href='?action=serie&serie_id=$id'>$titre</a>
                     end;
 
-            $html .= "<a href='?action=favourite&id=$id'>⭐</a>";
+            // Cette partie permet de gérer les favoris
+            $user = unserialize($_SESSION['user']);
+            $id_user = $user->__get("id");
+
+            if (!Favourite::isAlreadyFavourite($id_user, $id)) {
+
+                $html .= <<< END
+                <form method="post" action="?action=favourite">
+                    <input type="hidden" name="serie_id" value="$id">
+                    <button type="submit">⭐</button>
+                </form>
+                END;
+
+            }
 
             $html .= "</div>";
         }
-        $html .=<<<END
+        $html .= <<<END
                                 </div>
                             </div>
                         </body>
@@ -51,7 +65,8 @@ class DisplayCatalogueAction extends Action
         return $html;
     }
 
-    public function rendererHtml(){
+    public function rendererHtml()
+    {
 
     }
 

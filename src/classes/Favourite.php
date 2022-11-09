@@ -5,9 +5,18 @@ namespace netvod\classes;
 use netvod\database\ConnectionFactory;
 use PDO;
 
+/**
+ * Classe permettant d'interagir via la base de donnée concernant les favoris
+ */
 class Favourite
 {
 
+    /**
+     * Méthode statique permettant d'ajouter une série favorite d'un utilisateur
+     * @param int $id_user
+     * @param int $id_serie
+     * @return void
+     */
     public static function addToFavourite(int $id_user, int $id_serie)
     {
 
@@ -20,6 +29,12 @@ class Favourite
 
     }
 
+    /**
+     * Méthode statique permettant de vérifier si l'utilisateur à déjà cette série en favoris
+     * @param int $id_user
+     * @param int $id_serie
+     * @return bool
+     */
     public static function isAlreadyFavourite(int $id_user, int $id_serie): bool
     {
 
