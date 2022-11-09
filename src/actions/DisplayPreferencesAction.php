@@ -33,6 +33,7 @@ class DisplayPreferencesAction extends Action{
                 foreach($stmt->fetchAll(PDO::FETCH_OBJ) as $row){
                     $html.=<<<end
                     <li><a href="?action=serie&serie_id=$row->id">$row->titre</a></li>
+                        <a href="?action=supPref&serie_id=$row->id">retirer des favoris</a>
                 end;
                 }
                 $html.="</ul>";

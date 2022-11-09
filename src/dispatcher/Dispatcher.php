@@ -12,6 +12,7 @@ use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
 use netvod\actions\EnCoursAction;
 use netvod\actions\LectureEpisodeAction;
+use netvod\actions\RetirerFavorisAction;
 use netvod\actions\SignUpAction;
 use netvod\actions\WelcomeAction;
 
@@ -53,6 +54,10 @@ class Dispatcher
 
             case 'signup':
                 $act = new SignUpAction();
+                $html = $act->execute();
+                break;
+            case 'supPref':
+                $act = new RetirerFavorisAction();
                 $html = $act->execute();
                 break;
 
