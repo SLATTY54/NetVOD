@@ -11,7 +11,7 @@ namespace netvod\actions;
 
 use netvod\database\ConnectionFactory;
 
-class lectureEpisodeAction extends Action
+class LectureEpisodeAction extends Action
 {
 
     public function execute(): string

@@ -6,6 +6,7 @@ use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\DisplayPreferencesAction;
 use netvod\actions\DisplaySerieAction;
 use netvod\actions\AddSerieFavourite;
+use netvod\actions\EnCoursAction;
 use netvod\actions\LectureEpisodeAction;
 use netvod\actions\WelcomeAction;
 use netvod\actions\ActionLogin;
@@ -62,7 +63,7 @@ class Dispatcher
             case"pref":
                 $act = new DisplayPreferencesAction();
                 $html= $act->execute();
-                $act = new DisplayEncoursAction();
+                $act = new DisplayEnCoursAction();
                 $html .= $act->execute();
                 break;
 
