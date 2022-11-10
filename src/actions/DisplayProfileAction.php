@@ -69,22 +69,18 @@ class DisplayProfileAction extends Action
                                 
                                 <img src="../resources/images/logo.png" alt="logo">
                                 
-                                <ul class="menu">                         
-                                    <li class="profile">
-                                        <a href="index.php?action=DisplayProfileAction"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="color: white"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg></a>                   
-                                    </li>
-                                </ul>    
+                          
                             </nav>
                         </div> 
                    HEREDOC;
 
         if ($firstProfile){
 
-            $html = <<<HEREDOC
+            $html .= <<<HEREDOC
                         <form method="post" action="?action=profile">
                             <div class="profile_container">
                                
-                                <div class="profile">
+                                <div class="profile2">
                                     <h1 id="title">Mon Profil</h1>
                                    
                                     <div class="nom">
@@ -117,10 +113,13 @@ class DisplayProfileAction extends Action
                                         <div class="buttonControl">
                                             <button type="submit" class="btnConnect">Valider</button>
                                         </div>
+                                        <a href="?action=catalogue" style="margin-top: 2%;margin-left: auto;margin-right: auto;margin-bottom: 2%"><button type="button" class="btnRetour" name="retour">Retour</button></a>
+                                
                                     </div>
-                                </div>
+                                    </div>
                                 
                                 </form>
+                                
                                 <p class="footer">&#169; KINZELIN Rémy, SIGNORELLI LUCAS, HIRTZ Jules, PERROT Alexandre et ERPELDING Lucas</p>
                             </body>
                         </html>
@@ -148,9 +147,10 @@ class DisplayProfileAction extends Action
                                     
                                         <form action="" method="post">
                                             <div class="buttonControl">
-                                                   <button type="submit" class="btnConnect" name="modifier">Modifier</button>
+                                                   <button type="submit" class="btnModif" name="modifier">Modifier</button>
                                             </div>
                                         </form>
+                                        <a href="?action=catalogue" style="margin-top: 2%;margin-left: auto;margin-right: auto"><button type="submit" class="btnRetour" name="retour">Retour</button></a>
                                 </div>
                             </div>
                         <p class="footer">&#169; KINZELIN Rémy, SIGNORELLI LUCAS, HIRTZ Jules, PERROT Alexandre et ERPELDING Lucas</p>

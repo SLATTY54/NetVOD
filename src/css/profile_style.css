@@ -1,5 +1,16 @@
-html {
-    scroll-behavior: smooth;
+body, html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+    direction: ltr;
+    position: relative;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    z-index: -2;
+    background-color: #333333;
+    margin: 0;
+    padding: 0;
+
 }
 
 *{
@@ -62,29 +73,17 @@ label{
     cursor: default;
     opacity:1;
 }
-.connexion{
+.profile_container{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
+
+
 .profile{
     color: white;
-}
-
-/*broken*/
-.login{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background: rgba(0,0,0,0.65);
-    border-radius: 9px;
-    width: 249px;
-    height: 300px;
-    padding: 68px 68px 40px;
-}
-
-.register{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -93,6 +92,19 @@ label{
     border-radius: 9px;
     width: 249px;
     height: 315px;
+    padding: 68px 68px 68px;
+}
+
+.profile2{
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,0.65);
+    border-radius: 9px;
+    width: 249px;
+    height: 400px;
     padding: 68px 68px 68px;
 }
 
@@ -134,9 +146,25 @@ label{
     background-color: #FF0303FF;
 }
 
-.btnRegister{
+.btnModif{
     height: 50px;
     margin: 24px 0 12px 0;
+    padding: 16px;
+    width: 80%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    background-color: #FF0303FF;
+}
+
+.btnRetour{
+    height: 50px;
+    margin-top:0;
+    margin-left: 10%;
+
     padding: 16px;
     width: 80%;
     cursor: pointer;
