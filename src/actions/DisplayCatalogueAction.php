@@ -131,7 +131,7 @@ class DisplayCatalogueAction extends Action
         $query->closeCursor();
         $html.=<<<END
                 </div>
-                <h1 style="color: white;margin-bottom: 0;margin-top: 2%;font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;text-align: left">FAVORIE</h1>
+                <h1 style="color: white;margin-bottom: 0;margin-top: 2%;font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;text-align: left">FAVORIS</h1>
                 END;
         if (!$nbligne){
             $html.=<<<HEREDOC
@@ -149,7 +149,7 @@ class DisplayCatalogueAction extends Action
             $c = 1;
             $titles = array();
             $stmt = $bd->prepare('SELECT count(*) as nbSerieFav FROM preferences WHERE id_user = :id_user');
-            $stmt->execute(['id_user' => $id_user]);@
+            $stmt->execute(['id_user' => $id_user]);
             $nbSeriesFav = $stmt->fetch(PDO::FETCH_ASSOC);
             $nbSeriesFav = $nbSeriesFav['nbSerieFav'];
 
