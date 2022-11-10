@@ -6,6 +6,7 @@ html {
 a {
     text-decoration: none;
 }
+
 body {
     margin: 0;
     background-color: #333333;;
@@ -107,7 +108,22 @@ h1 {
     margin-left: 2%;
 }
 
-button {
+#buttonComment {
+    background-color: red;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    border-radius: 5px;
+}
+
+#nbEps {
+    margin-left: 3%;
+}
+
+.episodes button {
     cursor: pointer;
     min-width: 100%;
     min-height: 100%;

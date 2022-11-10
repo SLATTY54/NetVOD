@@ -58,11 +58,13 @@ class DisplaySerieAction extends Action
                 <h4>paru en $data->annee</h4>
                 <h4>ajouté le $data->date_ajout</h4>
                 <h4>note moyenne $noteMoy/5</h4>
-                <a href="?action=commentaire&serie=$id">voir les commentaires</a>
+                <form method="post" action="?action=commentaire&serie=$id">
+                    <button type="submit" id="buttonComment">Voir les commentaires</button>
+                </form>
                 </div>
                  
                 </div>
-                <h2>$nbEp Episode(s)</h2>
+                <h2 id="nbEps">$nbEp Episode(s)</h2>
               
             end;
 
