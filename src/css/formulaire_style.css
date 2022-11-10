@@ -139,6 +139,10 @@ label {
     background-color: #FF0303FF;
 }
 
+.token {
+    color: red;
+}
+
 .btnRegister {
     height: 50px;
     margin: 24px 0 12px 0;

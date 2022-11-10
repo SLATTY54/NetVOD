@@ -5,7 +5,7 @@ namespace netvod\actions;
 
 use netvod\classes\Authentification;
 use netvod\classes\Comment;
-use netvod\Exceptions\CommentException;
+use netvod\exceptions\CommentException;
 
 class ActionNoteCommentaire extends Action {
 

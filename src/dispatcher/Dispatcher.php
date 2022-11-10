@@ -3,6 +3,7 @@
 namespace netvod\dispatcher;
 
 use netvod\actions\ActionNoteCommentaire;
+use netvod\actions\ActivateAction;
 use netvod\actions\DisconnectAction;
 use netvod\actions\DisplayProfileAction;
 use netvod\actions\LoginAction;
@@ -68,6 +69,10 @@ class Dispatcher
             // S'enregister sur le site
             case 'disconnect':
                 $act = new DisconnectAction();
+                $html = $act->execute();
+                break;
+            case 'activate':
+                $act = new ActivateAction();
                 $html = $act->execute();
                 break;
             // si l'utilisateur clique sur un episode d'une serie

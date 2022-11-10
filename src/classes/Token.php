@@ -36,7 +36,6 @@ class Token
 
     }
 
-
     /**
      * Vérifie si le token est valide
      * @param string $token token à vérifier

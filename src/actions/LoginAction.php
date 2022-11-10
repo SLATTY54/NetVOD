@@ -3,7 +3,8 @@
 namespace netvod\actions;
 
 use netvod\classes\Authentification;
-use netvod\Exceptions\AuthException;
+use netvod\exceptions\ActivateException;
+use netvod\exceptions\AuthException;
 
 /**
  * Action permettant de se connecter au site Internet et plus précisement de se connecter à sa session
@@ -15,7 +16,7 @@ class LoginAction extends Action
     {
 
         // si l'utilisateur a déjà une session
-        if(Authentification::isAuthentified()){
+        if (Authentification::isAuthentified()) {
             header('Location: ?action=catalogue');
         }
 
@@ -36,6 +37,9 @@ class LoginAction extends Action
                     // si l'email ou mot de passe est incorrect, alors on retourne une erreur
                 } catch (AuthException) {
                     $html = $this->renderHtml(true);
+                    // si le compte n'est pas activé
+                } catch (ActivateException) {
+                    $html = $this->renderHtml(false, true);
                 }
 
                 // si les données ne passent pas les filter, alors on retourne une erreur
@@ -49,7 +53,7 @@ class LoginAction extends Action
     }
 
 
-    public function renderHtml(bool $error = false): string
+    public function renderHtml(bool $error = false, bool $accountNotEnabled = false): string
     {
 
         $html = <<<HEREDOC
@@ -85,6 +89,15 @@ class LoginAction extends Action
             $html .= <<<HEREDOC
                                     <div class="errorMessage">
                                         <label>L'adresse e-mail ou le mot de passe est incorrect </label>
+                                    </div>
+                        HEREDOC;
+        }
+
+        // afficher le message indiquant un compte non activé
+        if ($accountNotEnabled) {
+            $html .= <<<HEREDOC
+                                    <div class="errorMessage">
+                                        <label>Le compte n'a pas été activé !</label>
                                     </div>
                         HEREDOC;
         }

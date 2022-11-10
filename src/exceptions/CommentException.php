@@ -1,8 +1,10 @@
 <?php
 
-namespace netvod\Exceptions;
+namespace netvod\exceptions;
 
-class AuthException extends \Exception
+use Exception;
+
+class CommentException extends Exception
 {
     public function __construct(string $message)
     {

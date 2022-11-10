@@ -14,7 +14,7 @@ class SignUpAction extends Action
     {
 
         // si l'utilisateur a déjà une session
-        if(Authentification::isAuthentified()){
+        if (Authentification::isAuthentified()) {
             header('Location: ?action=catalogue');
         }
 
@@ -33,11 +33,11 @@ class SignUpAction extends Action
                 // si les mot de passe ne correspondent pas, alors on retourne une erreur de mot de passe
                 if ($password != $password2) {
                     $html = $this->renderHtml(false, true);
-                // si les mots de passe correspondent et que l'email n'est pas déja utilisé, alors l'inscription se fait
+                    // si les mots de passe correspondent et que l'email n'est pas déja utilisé, alors l'inscription se fait
                 } else if (!Authentification::isRegistered($email)) {
-                    Authentification::register($email, $password);
-                    header('Location: ?action=login');
-                // si l'email est déja utilisé, alors on retourne une erreur
+                    $token = Authentification::register($email, $password);
+                    $html = $this->renderHtml(false, false, $token);
+                    // si l'email est déja utilisé, alors on retourne une erreur
                 } else {
                     $html = $this->renderHtml(true, false);
                 }
@@ -48,7 +48,7 @@ class SignUpAction extends Action
     }
 
 
-    public function renderHtml(bool $errorEmail = false, bool $errorPwd = false): string
+    public function renderHtml(bool $errorEmail = false, bool $errorPwd = false, string $activateUrl = null): string
     {
         $html = <<<HEREDOC
                     <html>
@@ -94,6 +94,15 @@ class SignUpAction extends Action
             $html .= <<<HEREDOC
                                         <div class="errorMessage">
                                             <label>Cet email est déjà utilisé</label>
+                                        </div>
+                        HEREDOC;
+        }
+
+        // afficher le message indiquant que les mots de passe ne correspondent pas
+        if (isset($activateUrl)) {
+            $html .= <<<HEREDOC
+                                        <div class="errorMessage">
+                                            <a class="token" href="?action=activate&token=$activateUrl"<label>Activer votre compte</label></a>
                                         </div>
                         HEREDOC;
         }

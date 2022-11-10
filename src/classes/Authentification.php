@@ -3,7 +3,8 @@
 namespace netvod\classes;
 
 use netvod\database\ConnectionFactory;
-use netvod\Exceptions\AuthException;
+use netvod\exceptions\ActivateException;
+use netvod\exceptions\AuthException;
 use PDO;
 
 /**
@@ -26,20 +27,35 @@ class Authentification
             throw new AuthException("Erreur d'authentification");
         }
 
+        if (!$user['account_enabled']) {
+            throw new ActivateException("Le compte n'est pas activé !");
+        }
+
         $user = new User($user['id'], $email, $user['passwd']);
         self::defineUserData($user);
         $_SESSION['user'] = serialize($user);
     }
 
-    public static function register(string $email, string $password): bool
+    public static function register(string $email, string $password): ?string
     {
         if (strlen($password) >= 5 && !self::isRegistered($email)) {
+
+            $token = Token::generateToken();
+
             $db = ConnectionFactory::makeConnection();
-            $stmt = $db->prepare('INSERT INTO User (email, passwd) VALUES (?, ?)');
-            $stmt->execute([$email, password_hash($password, PASSWORD_DEFAULT)]);
-            return true;
+            $stmt = $db->prepare('INSERT INTO User (email, passwd, token_activate) VALUES (?, ?, ?)');
+            $stmt->execute([$email, password_hash($password, PASSWORD_DEFAULT), $token]);
+
+            return $token;
         }
-        return false;
+        return null;
+    }
+
+    public static function enableAccount(string $token)
+    {
+        $db = ConnectionFactory::makeConnection();
+        $stmt = $db->prepare('UPDATE User SET account_enabled = 1 WHERE token_activate = ?');
+        $stmt->execute([$token]);
     }
 
     public static function defineUserData(User $user)
