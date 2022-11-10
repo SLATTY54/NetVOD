@@ -49,7 +49,13 @@ class DisplaySerieAction extends Action
                             <title>NetVod</title>
                             <link href="./css/serie_style.css" rel="stylesheet">
                         </head>
+                         <div class="rtBeuteu">
+                    <button>
+                    <a href="index.php?action=catalogue">Retour</a>
+                    </button>   
+                    </div> 
                         <body>
+                        
                 <h1>$data->titre</h1>               
                 
                 <div class="img-gradient"> 
@@ -83,7 +89,7 @@ class DisplaySerieAction extends Action
                         <ul class="intButton">
                             <h2>$row->id</h2>  
                             <h3>$row->titre</h3>
-                            <p>$row->duree min</p>
+                            <p>$row->duree sec</p>
                         </ul>
                         </button></a>
                         
@@ -91,6 +97,7 @@ class DisplaySerieAction extends Action
                 end;
         }
         $html .= <<<end
+              
                 </div>
                 </body>
                 </html>

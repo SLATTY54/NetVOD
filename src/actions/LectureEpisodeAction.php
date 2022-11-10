@@ -62,11 +62,11 @@ class LectureEpisodeAction extends Action
                     <script>
                     var dureeRaw = {$data['duree']};
                     if (dureeRaw < 60) {
-                        document.write(dureeRaw + "min");
+                        document.write(dureeRaw + "sec");
                     } else {
-                        var dureeH = Math.floor(dureeRaw / 60);
-                        var dureeMin = dureeRaw % 60;
-                        document.write(dureeH + "h" + dureeMin + "min");
+                        var dureeM = Math.floor(dureeRaw / 60);
+                        var dureeS = dureeRaw % 60;
+                        document.write(dureeM + "min" + dureeS + "sec");
                     }
                     </script>
                     </div>

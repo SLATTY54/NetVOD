@@ -121,6 +121,39 @@ button {
     flex-direction: row;
 
 }
+.rtBeuteu {
+    margin: 10px 0 0px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position : absolute;
+}
+
+.rtBeuteu button {
+    /*fix thebutton on the right */
+    margin-left: auto;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    /*avoid blue or purple color and add a hover */
+    border-radius: 5px;
+    border: none;
+    color: #c7c0c0;
+    background-color: #FF0303FF;
+
+}
+
+.rtBeuteu button a {
+    color: #fff;
+}
 
 .intButton  {
     margin: 0;
