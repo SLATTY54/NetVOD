@@ -5,6 +5,7 @@ namespace netvod\dispatcher;
 use netvod\actions\ActionNoteCommentaire;
 use netvod\actions\ActionLogin;
 use netvod\actions\AddSerieFavourite;
+use netvod\actions\ChangePasswordAction;
 use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\DisplayCommentaireAction;
 use netvod\actions\DisplayEnCoursAction;
@@ -35,10 +36,16 @@ class Dispatcher
             </div>
         end;
         switch ($this->action) {
+            case 'forgetPassword':
+                $act = new ForgetPasswordAction();
+                $html = $act->execute();
+                break;
+
             case'catalogue':
                 $act = new DisplayCatalogueAction();
                 $html = $act->execute().$retour;
                 break;
+
             case'serie':
                 $act = new DisplaySerieAction();
                 $html = $act->execute().$retour;
@@ -57,10 +64,7 @@ class Dispatcher
                 $html = $act->execute();
                 break;
 
-            case 'forget_password':
-                $act = new ForgetPasswordAction();
-                $html = $act->execute();
-                break;
+
 
         // si l'utilisateur clique sur un episode d'une serie
             case 'episode':
