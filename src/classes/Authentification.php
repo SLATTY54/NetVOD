@@ -27,6 +27,7 @@ class Authentification
         }
 
         $user = new User($user['id'], $email, $user['passwd']);
+        self::defineUserData($user);
         $_SESSION['user'] = serialize($user);
     }
 
@@ -39,6 +40,22 @@ class Authentification
             return true;
         }
         return false;
+    }
+
+    public static function defineUserData(User $user){
+
+        $email = $user->__get('email');
+
+        $db = ConnectionFactory::makeConnection();
+        $ps = $db->prepare('SELECT nom, prenom, dateN, biographie FROM User WHERE email = ?');
+        $ps->bindParam(1, $email);
+        $ps->execute();
+        $result = $ps->fetch(PDO::FETCH_ASSOC);
+
+        $user->__set('nom',$result['nom']);
+        $user->__set('prenom',$result['prenom']);
+        $user->__set('date_naissance',$result['dateN']);
+        $user->__set('biographie',$result['biographie']);
     }
 
     public static function isRegistered(string $email): bool
