@@ -21,7 +21,7 @@ class DisplayCommentaireAction extends Action
             </head> 
             <body>
                 <div class="titre">
-                    <h1>Commentaires</h1>
+                    <h1>AVIS</h1>
                 </div>  
                     <div class="coms">
             end;
@@ -39,12 +39,18 @@ class DisplayCommentaireAction extends Action
                     "{$row['commentaire']}" 
                     </p>
                     </div>
+                    
                     <br>
                 end;
         }
+        // ajout d un bouton pour retourner a la page de la serie
         $html .= <<<end
                     </div>
-                
+                    <div class="intButton">
+                    <button>
+                    <a href="index.php?action=serie&serie_id={$serie}">Retour</a>
+                    </button>   
+                    </div>
             </body>
             </html>
             end;

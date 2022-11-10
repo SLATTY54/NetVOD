@@ -5,6 +5,7 @@ html {
 
 a {
     text-decoration: none;
+    color: #fff;
 }
 body {
     margin: 0;
@@ -28,7 +29,7 @@ h1 {
     margin: 4% 0 0;
     background-color: #212121;
     border-radius: 10px 10px 0px 0px;
-    text-shadow: 1px 1px 1px white, 10px 10px 1px black;
+    text-shadow: 1px 1px 1px white, 10px 10px 1px #3f3f3f;
 }
 
 
@@ -56,22 +57,32 @@ p {
     font-size: 1.5em;
     font-weight: bold;
 }
+
+
 button {
-    cursor: pointer;
-    min-width: 100%;
-    min-height: 100%;
+    /*fix thebutton on the right */
+    margin-left: auto;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
     border-radius: 5px;
-    padding: 2px;
-    font-size: 40px;
-    background-color: #3b3b3b;
-    color: #fff;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    /*avoid blue or purple color and add a hover */
+    border-radius: 5px;
     border: none;
-    display : flex;
-    flex-direction: row;
+    color: #c7c0c0;
+    background-color: #FF0303FF;
 
 }
 
 .intButton  {
+
     margin: 0;
     display: flex;
     flex-direction: row;
