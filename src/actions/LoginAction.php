@@ -14,6 +14,11 @@ class LoginAction extends Action
     public function execute(): string
     {
 
+        // si l'utilisateur a déjà une session
+        if(Authentification::isAuthentified()){
+            header('Location: ?action=catalogue');
+        }
+
         // méthode GET, retourne la réponse HTML de base
         $html = $this->renderHtml();
 

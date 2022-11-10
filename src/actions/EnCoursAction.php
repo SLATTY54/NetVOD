@@ -2,12 +2,19 @@
 
 namespace netvod\actions;
 
+use netvod\classes\Authentification;
 use netvod\database\ConnectionFactory;
 
 class EnCoursAction
 {
     public function execute(): void
     {
+
+        // si l'utilisateur n'a pas une session de connecté
+        if(!Authentification::isAuthentified()){
+            header('Location: ?action=login');
+        }
+
         $episode = $_GET['episode_id'];
         // assainissement de l id de l episode
         $episode = filter_var($episode, FILTER_SANITIZE_NUMBER_INT);

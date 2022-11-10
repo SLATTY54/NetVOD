@@ -2,6 +2,7 @@
 
 namespace netvod\actions;
 
+use netvod\classes\Authentification;
 use netvod\classes\Favourite;
 use netvod\database\ConnectionFactory;
 use PDO;
@@ -11,6 +12,12 @@ class DisplayCatalogueAction extends Action
 
     public function execute(): string
     {
+
+        // si l'utilisateur n'a pas une session de connecté
+        if(!Authentification::isAuthentified()){
+            header('Location: ?action=login');
+        }
+
         $titles = array();
         $user = unserialize($_SESSION['user']);
         $id_user = $user->__get("id");

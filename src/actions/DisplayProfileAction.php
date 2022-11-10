@@ -2,6 +2,7 @@
 
 namespace netvod\actions;
 
+use netvod\classes\Authentification;
 use netvod\classes\User;
 use netvod\database\ConnectionFactory;
 
@@ -10,6 +11,12 @@ class DisplayProfileAction extends Action
 
     public function execute(): string
     {
+
+        // si l'utilisateur n'a pas une session de connecté
+        if(!Authentification::isAuthentified()){
+            header('Location: ?action=login');
+        }
+
         $bd = ConnectionFactory::makeConnection();
 
         $user = unserialize($_SESSION['user']);

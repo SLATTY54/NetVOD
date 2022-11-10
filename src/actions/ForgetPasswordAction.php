@@ -14,6 +14,12 @@ class ForgetPasswordAction extends Action
 
     public function execute(): string
     {
+
+        // si l'utilisateur a déjà une session
+        if(Authentification::isAuthentified()){
+            header('Location: ?action=catalogue');
+        }
+
         $html = <<<HTML
         <html>
             <head>

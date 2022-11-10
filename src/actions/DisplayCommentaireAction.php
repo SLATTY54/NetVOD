@@ -2,6 +2,7 @@
 
 namespace netvod\actions;
 
+use netvod\classes\Authentification;
 use netvod\database\ConnectionFactory;
 use PDO;
 
@@ -10,6 +11,12 @@ class DisplayCommentaireAction extends Action
 
     public function execute(): string
     {
+
+        // si l'utilisateur n'a pas une session de connecté
+        if(!Authentification::isAuthentified()){
+            header('Location: ?action=login');
+        }
+
         $html = <<<end
             <html>
             <head>

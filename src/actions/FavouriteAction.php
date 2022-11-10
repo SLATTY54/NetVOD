@@ -2,6 +2,7 @@
 
 namespace netvod\actions;
 
+use netvod\classes\Authentification;
 use netvod\classes\Favourite;
 
 /**
@@ -12,6 +13,11 @@ class FavouriteAction extends Action
 
     public function execute(): string
     {
+
+        // si l'utilisateur n'a pas une session de connecté
+        if(!Authentification::isAuthentified()){
+            header('Location: ?action=login');
+        }
 
         // méthode POST
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

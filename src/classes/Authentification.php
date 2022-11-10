@@ -17,7 +17,7 @@ class Authentification
         $db = ConnectionFactory::makeConnection();
         $stmt = $db->prepare('SELECT * FROM User WHERE email = ?');
         $stmt->bindParam(1, $email);
-        $res = $stmt->execute([$email]);
+        $stmt->execute([$email]);
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if (!isset($user['email'])) throw new AuthException("ttt");
@@ -42,7 +42,8 @@ class Authentification
         return false;
     }
 
-    public static function defineUserData(User $user){
+    public static function defineUserData(User $user)
+    {
 
         $email = $user->__get('email');
 
@@ -52,10 +53,10 @@ class Authentification
         $ps->execute();
         $result = $ps->fetch(PDO::FETCH_ASSOC);
 
-        $user->__set('nom',$result['nom']);
-        $user->__set('prenom',$result['prenom']);
-        $user->__set('date_naissance',$result['dateN']);
-        $user->__set('biographie',$result['biographie']);
+        $user->__set('nom', $result['nom']);
+        $user->__set('prenom', $result['prenom']);
+        $user->__set('date_naissance', $result['dateN']);
+        $user->__set('biographie', $result['biographie']);
     }
 
     public static function isRegistered(string $email): bool
@@ -68,6 +69,11 @@ class Authentification
             return true;
         }
         return false;
+    }
+
+    public static function isAuthentified(): bool
+    {
+        return isset($_SESSION['user']);
     }
 
 }

@@ -6,9 +6,9 @@ class WelcomeAction extends Action
 {
     public function execute(): string
     {
-        $html = <<<HEREDOC
-                        <html lang="en">
-                            <head><title>NetVod</title>
+        return <<<HEREDOC
+                        <html lang="fr">
+                            <head><title>NetVOD</title>
                                   <link href="./css/welcome-style.css" rel="stylesheet">
                             </head>
                             <body>
@@ -19,11 +19,7 @@ class WelcomeAction extends Action
                                 <a href="?action=login"><button class="btnC">Connexion</button></a>
                             </body>
                         </html>
-        
-HEREDOC;
-
-
-        return $html;
+                    HEREDOC;
           
     }
 }

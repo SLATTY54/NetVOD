@@ -9,6 +9,7 @@ namespace netvod\actions;
 // TODO ajouter un bouton pour revenir a la liste des episodes
 // TODO avancer / reculer de 10 secondes
 
+use netvod\classes\Authentification;
 use netvod\database\ConnectionFactory;
 
 class LectureEpisodeAction extends Action
@@ -16,6 +17,12 @@ class LectureEpisodeAction extends Action
 
     public function execute(): string
     {
+
+        // si l'utilisateur n'a pas une session de connecté
+        if(!Authentification::isAuthentified()){
+            header('Location: ?action=login');
+        }
+
         $episode = $_GET['episode_id'];
         // assainissement de l id de l episode
         $episode = filter_var($episode, FILTER_SANITIZE_NUMBER_INT);
