@@ -8,15 +8,47 @@ html {
 
 body{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: black;
+    background-color: #141414;
+}
+.logo{
+    width: 100%;
+}
+nav {
+    background-color: #141414;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
-header{
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
+nav ul {
+    list-style-type: none;
 }
+
+nav li {
+    margin-left: 0;
+}
+
+
+
+
+
+@media all and (max-width : 980px) {
+    nav {
+        position: static;
+    }
+
+    nav li {
+        float: none;
+    }
+
+    nav ul {
+        width: 100%;
+    }
+
+}
+
 
 h1 {
     color: red;
@@ -25,7 +57,7 @@ h1 {
 
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 100%);
+    grid-template-columns: repeat(2, 100%);
     overflow: hidden;
     scroll-behavior: smooth;
 }
@@ -33,12 +65,15 @@ h1 {
     width: 100%;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(60, auto);
     margin: 20px 0;
 }
 .wrapper section .item {
     position: relative;
     padding: 0 2px;
+    width: 444px;
+    height:286.72px;
+    margin: 0 2px;
     transition: 250ms all;
 }
 .wrapper section .item:hover {
@@ -58,42 +93,6 @@ h1 {
     color: #fff;
 }
 
-.fav {
-    height: 40px;
-    margin-top:1%;
-}
-
-.fav:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-}
-.fav:not(:checked) > label {
-    float:left;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color: #464545;
-}
-.fav:not(:checked) > label:before {
-    content: '★ ';
-}
-.fav > input:checked ~ label {
-    color:yellow;
-}
-.fav:not(:checked) > label:hover,
-.fav:not(:checked) > label:hover ~ label {
-    color: #940108;
-}
-.fav > input:checked + label:hover,
-.fav > input:checked + label:hover ~ label,
-.fav > input:checked ~ label:hover,
-.fav > input:checked ~ label:hover ~ label,
-.fav > label:hover ~ input:checked ~ label {
-    color: #940108;
-}
-
 
 
 .wrapper section .arrow__btn {
@@ -101,8 +100,9 @@ h1 {
     color: #fff;
     text-decoration: none;
     font-size: 6em;
-    background: black;
+    background: #141414;
     width: 80px;
+    height: 220px;
     padding: 20px;
     text-align: center;
     z-index: 1;
@@ -120,3 +120,10 @@ h1 {
     background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, black 100%);
 }
 
+
+
+.like,button {
+    margin-top: 2%;
+    border: #141414;
+    background-color: #141414;
+}

@@ -25,19 +25,20 @@ class DisplayCatalogueAction extends Action
                 
                 <div class="container">
                     <div class="header">
-                        <div class="logo">
+                        <nav>
+                            
                             <img src="../resources/images/logo.png" alt="logo">
-                        </div>
-                        
-                        <h1>Catalogue de Série</h1>
-                        
-                        <div class="search">
-                            <input type="text" placeholder="Rechercher une série">
-                            <button>Rechercher</button>
-                        </div>    
+                            
+                            <ul class="menu">                         
+                                <li class="profile">
+                                    <a href="index.php?action=DisplayProfileAction"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" style="color: white"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg></a>                   
+                                </li>
+                            </ul>    
+                        </nav>
                         
                             
                     </div>
+                    <h1 style="color: white;margin-bottom: 0;margin-top: 2%;font-family: Netflix Sans,Helvetica Neue,Segoe UI,Roboto,Ubuntu,sans-serif;text-align: left">CATALOGUE</h1>
                     <div class="wrapper">
                         <section id="section1">
                                 
@@ -49,10 +50,10 @@ class DisplayCatalogueAction extends Action
 
         $bd = ConnectionFactory::makeConnection();
 
-        $stmt = $bd->prepare('SELECT max(id) as maxim FROM serie');
+        $stmt = $bd->prepare('SELECT count(*) as nbSerie FROM serie');
         $stmt->execute();
         $nbSeries = $stmt->fetch(PDO::FETCH_ASSOC);
-        $nbSeries = $nbSeries['maxim'];
+        $nbSeries = $nbSeries['nbSerie'];
 
         $c = 1;
         while(count($titles) != $nbSeries){
@@ -82,15 +83,14 @@ class DisplayCatalogueAction extends Action
                                     <img src=../resources/images/$img href='?action=serie&serie_id=$id' style="width:440px;height:210px ">
                                     <h1 class="heading">$titre</h1>
                                 </a>
-                            <form method="post" action="?action=favourite&callback={$_SERVER['QUERY_STRING']}">
-                                <div class="fav">
-                                    <input type="checkbox" id="star" name="serie_id" value="$id"/>
-                                    <label for="star" title="text">Like</label>
-                                </div>
-                            </form>
-                            
-                            
+                                <form method="post" action="?action=favourite&callback={$_SERVER['QUERY_STRING']}">
+                                    <div class="like">
+                                        <input type="hidden" name="serie_id" value="$id">
+                                        <button type="submit">$star</button>
+                                    </div>
+                                </form>
                         </div>
+                        
                     end;
                     $titles[]=$titre;
                     $compteur++;
@@ -119,35 +119,6 @@ class DisplayCatalogueAction extends Action
                        
                     </div>
                     </div>
-                    <script>
-                            $('.click').click(function() {
-                                if ($('span').hasClass("fa-star")) {
-                                        $('.click').removeClass('active')
-                                    setTimeout(function() {
-                                        $('.click').removeClass('active-2')
-                                    }, 30)
-                                        $('.click').removeClass('active-3')
-                                    setTimeout(function() {
-                                        $('span').removeClass('fa-star')
-                                        $('span').addClass('fa-star-o')
-                                    }, 15)
-                                } else {
-                                    $('.click').addClass('active')
-                                    $('.click').addClass('active-2')
-                                    setTimeout(function() {
-                                        $('span').addClass('fa-star')
-                                        $('span').removeClass('fa-star-o')
-                                    }, 150)
-                                    setTimeout(function() {
-                                        $('.click').addClass('active-3')
-                                    }, 150)
-                                    $('.info').addClass('info-tog')
-                                    setTimeout(function(){
-                                        $('.info').removeClass('info-tog')
-                                    },1000)
-                                }
-                            })
-                    </script>
                     </body>
                     </html>
                 HEREDOC;
