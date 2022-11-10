@@ -77,11 +77,11 @@ class ActionNoteCommentaire extends Action {
                                                     </div>
 
                                                     <button type="submit" name="send" class="btnE">Envoyer</button>
+                                                    <br>
+                                                    <button type="reset" class="btnC" onclick="closePopup()">Fermer</button>
                                                 
                                             </div>
                                         </form>
-                                        <button type="reset" class="btnC" onclick="closePopup()">Fermer</button>
-                  
                                     </div>
                                 </div>    
                                                                 
