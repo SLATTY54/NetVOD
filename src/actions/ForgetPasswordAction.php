@@ -2,23 +2,23 @@
 
 namespace netvod\actions;
 
-
 use netvod\classes\Authentification;
 use netvod\classes\Token;
 use netvod\database\ConnectionFactory;
 
+/**
+ * Action permettant de demander le token de réinitialisation du mot de passe
+ */
 class ForgetPasswordAction extends Action
 {
-
 
     public function execute(): string
     {
         $html = <<<HTML
         <html>
             <head>
-            <title>NetVOD</title>
-            <link href="./css/formulaire_style.css" rel="stylesheet">
-
+                <title>NetVOD</title>
+                <link href="./css/formulaire_style.css" rel="stylesheet">
             </head>
         HTML;
 
@@ -40,6 +40,7 @@ class ForgetPasswordAction extends Action
                     // genere le token et l'ajoute dans la base de données
                     $token = Token::generateToken();
                     Token::addTokenToUser($id_user, $token);
+                    // le redirige vers le formulaire pour changer son mot de passe (simplification du processus)
                     header('Location: ?action=resetpassword&token=' . $token);
 
                 } else {
@@ -57,8 +58,10 @@ class ForgetPasswordAction extends Action
         $html = <<<HEREDOC
                 <body>
                 <form method="post" action="?action=forgetPassword">
-                
-                <img id="logo" src="../resources/logo.png" alt="logo">
+                <video autoplay muted loop id="trailer">
+                    <source src="../resources/videos/netvod_trailer.mp4" type="video/mp4">
+                </video>
+                <img id="logo" src="../resources/images/logo.png" alt="logo">
                 
                 <div class="connexion">
                     <div class="register">
@@ -70,8 +73,7 @@ class ForgetPasswordAction extends Action
 
                 HEREDOC;
 
-        if ($errorEmail)
-        {
+        if ($errorEmail) {
             $html .= <<<HEREDOC
                 <div class="error">
                     <p>L'adresse email n'est pas valide</p>
@@ -79,8 +81,7 @@ class ForgetPasswordAction extends Action
                 HEREDOC;
         }
 
-        if ($errorPwd)
-        {
+        if ($errorPwd) {
             $html .= <<<HEREDOC
                         <div class="errorMessage">
                             <label>Les mots de passe ne correspondent pas</label>
@@ -88,9 +89,9 @@ class ForgetPasswordAction extends Action
                     HEREDOC;
         }
 
-        $html.= <<<HEREDOC
+        $html .= <<<HEREDOC
                                     <div class="buttonControl">
-                                      <button type="submit" class="btnConnect">Changer le mot de passe</button>
+                                      <button type="submit" class="btnForget">Changer le mot de passe</button>
                                     </div>
                                 </div>
                             </div>

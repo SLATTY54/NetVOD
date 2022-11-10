@@ -123,6 +123,20 @@ label{
     background-color: #FF0303FF;
 }
 
+.btnForget{
+    height: 60px;
+    margin: 24px 0 12px;
+    padding: 16px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    background-color: #FF0303FF;
+}
+
 .btnRegister{
     height: 50px;
     margin: 24px 0 12px 0;
