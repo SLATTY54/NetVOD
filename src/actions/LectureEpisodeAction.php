@@ -19,19 +19,17 @@ class LectureEpisodeAction extends Action
     {
 
         // si l'utilisateur n'a pas une session de connecté
-        if(!Authentification::isAuthentified()){
+        if (!Authentification::isAuthentified()) {
             header('Location: ?action=login');
         }
 
         $episode = $_GET['episode_id'];
         // assainissement de l id de l episode
         $episode = filter_var($episode, FILTER_SANITIZE_NUMBER_INT);
-        $existe = false;
 
         $attributs = $this->getEpisode($episode);
 
-        $html = $this->render($attributs);
-        return $html;
+        return $this->render($attributs);
     }
 
     public function getEpisode($episode): array

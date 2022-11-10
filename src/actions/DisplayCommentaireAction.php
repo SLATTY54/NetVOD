@@ -13,7 +13,7 @@ class DisplayCommentaireAction extends Action
     {
 
         // si l'utilisateur n'a pas une session de connecté
-        if(!Authentification::isAuthentified()){
+        if (!Authentification::isAuthentified()) {
             header('Location: ?action=login');
         }
 
@@ -33,7 +33,7 @@ class DisplayCommentaireAction extends Action
                     <div class="coms">
             end;
         $db = ConnectionFactory::makeConnection();
-        $stmt = $db->prepare("SELECT note, commentaire, nom, prenom FROM notation INNER JOIN User on id_user = id WHERE id_serie = ?");
+        $stmt = $db->prepare("SELECT note, commentaire, nom, prenom FROM notation INNER JOIN User on notation.id_user = User.id WHERE id_serie = ?");
         $serie = $_GET["serie"];
         $stmt->bindParam(1, $serie);
         $stmt->execute();
