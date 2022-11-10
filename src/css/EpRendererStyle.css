@@ -1,10 +1,11 @@
 html {
     background-color: black;
 }
+
 body {
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #333333; ;
+    background-color: #333333;;
     border-radius: 10px;
     font-size: 16px;
     color: #fff;
@@ -14,19 +15,25 @@ body {
     margin-right: auto;
     margin-top: 2%;
     margin-bottom: 2%;
+    z-index: -1;
 }
 
 .container {
-   margin-left: 2%;
+    margin-left: 2%;
+}
+
+p {
+    margin-left: 2%;
     margin-bottom: 2%;
 }
+
 .top {
     display: flex;
     width: 100%;
-    align-items: baseline;
+    align-items: center;
 }
 
-.button{
+.button {
     margin-left: auto;
     margin-right: 2%;
     margin-top: 2%;
@@ -35,8 +42,9 @@ body {
     padding: 5px;
     font-size: 16px;
 }
+
 button {
-  /*fix thebutton on the right */
+    /*fix thebutton on the right */
     margin-left: auto;
     margin-right: 2%;
     margin-top: 2%;
@@ -56,6 +64,7 @@ button {
     background-color: #FF0303FF;
 
 }
+
 .duree {
     display: flex;
     justify-content: space-between;
@@ -67,6 +76,7 @@ video {
     width: 100%;
     height: auto;
     position: relative;
-    border-radius: 10px;
+    z-index: 0;
+    border-radius: 0px 0px 10px 10px;
 }
 
