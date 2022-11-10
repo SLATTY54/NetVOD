@@ -72,7 +72,7 @@ h1 {
     background-color: #333333;
     position: absolute;
     /*make the body stack on the image */
-    top: 55%;
+    top: 45%;
     background-color: rgba(0, 0, 0, 0);
     padding-left: 20px;
     color: #fff;
