@@ -56,7 +56,7 @@ class DisplaySerieAction extends Action
                     </div> 
                         <body>
                         
-                <h1>$data->titre</h1>               
+                <h1 style="padding-bottom: 6%">$data->titre</h1>               
                 
                 <div class="img-gradient"> 
                 <img src=$img width="300" height="200" alt="image de couverture de la serie">
