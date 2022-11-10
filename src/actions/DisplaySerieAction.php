@@ -2,34 +2,22 @@
 
 namespace netvod\actions;
 
-use netvod\database\ConnectionFactory;
-use PDO;
+use netvod\classes\Comment;
+use netvod\classes\Serie;
 
 class DisplaySerieAction extends Action
 {
 
-    public function execute(): string{
+    public function execute(): string
+    {
+
         $id = $_GET['serie_id'];
-        $bd = ConnectionFactory::makeConnection();
 
-        $serie = $bd->prepare("SELECT * FROM serie WHERE id=?");
-        $serie->bindParam(1, $id);
-        $serie->execute();
-        $data = $serie->fetch(PDO::FETCH_OBJ);
+        $data = Serie::getSerieFromId($id);
+        $nbEp = Serie::getNombreEpisodesFromSerieId($id);
+        $noteMoy = Comment::getMoyenneGeneraleFromSerieId($id);
 
-        $query = $bd->prepare("SELECT COUNT(*) as 'nbEP' FROM episode WHERE serie_id=?");
-        $query->bindParam(1, $id);
-        $query->execute();
-        $stmt = $query->fetch(PDO::FETCH_OBJ);
-        $nbEp = $stmt->nbEP;
-
-        $query = $bd->prepare("SELECT AVG(note) as noteMoy FROM notation WHERE id_serie = ? GROUP BY id_serie");
-        $query->bindParam(1, $id);
-        $query->execute();
-        $stmt = $query->fetch(PDO::FETCH_ASSOC);
-        $noteMoy = round($stmt['noteMoy'], 2);
-
-        $html = <<<end
+        $html = <<< HEREDOC
                 <h1>$data->titre</h1>               
                 <h3>$data->descriptif</h3>
                 <h4>paru en $data->annee</h4>
@@ -37,24 +25,21 @@ class DisplaySerieAction extends Action
                 <h4>note moyenne $noteMoy/5</h4>
                 <a href="?action=commentaire&serie=$id">voir les commentaires</a>
                 <h5>$nbEp Episode(s)</h5>
-            end;
+            HEREDOC;
 
-        $query = $bd->prepare("SELECT * FROM episode WHERE serie_id=?");
-        $query->bindParam(1, $id);
-        $query->execute();
-        foreach ($query->fetchAll(PDO::FETCH_OBJ) as $row) {
+        $html .= "<ul>";
+        foreach (Serie::getEpisodesFromSerieId($id) as $episode) {
             $html .= <<<end
-                    <div class=$row->id>
-                        <br><a href="?action=episode&episode_id=$row->id">$row->id : $row->titre ($row->duree min)</a>
-                    </div>
+                    <li>
+                        <img src="../resources/images/$data->img" width="200">
+                        <a href="?action=episode&episode_id=$episode->id">$episode->numero : $episode->titre ($episode->duree min)</a>
+                    </li>
                 end;
         }
+        $html .= "</ul>";
+
         // ajout du bouton retour
-        $html .= <<<end
-                <div class="footer">
-                    <a href="?action=accueil">retour à l'accueil</a>
-                </div>
-            end;
+
         return $html;
     }
 }
