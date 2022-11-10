@@ -67,7 +67,7 @@ class ActionLogin extends Action
                                         <input type="password" name="password" id="id_password" placeholder="Mot de passe" class="textfield">
                                 </div>
                                 <div class="Signup">
-                                        <p><a href="?action=forget_password" style="color: red" >Mot de passe oublié ?</a></p>
+                                        <p><a href="?action=forgetPassword" style="color: red" >Mot de passe oublié ?</a></p>
                                 </div>
                    HEREDOC;
                     if ($error){
