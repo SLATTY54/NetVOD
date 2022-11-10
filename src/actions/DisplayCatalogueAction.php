@@ -74,7 +74,7 @@ class DisplayCatalogueAction extends Action
                     $id_user = $user->__get("id");
 
                     $alreadyFav = Favourite::isAlreadyFavourite($id_user, $id);
-                    $star = $alreadyFav ? "★" : "⭐";
+                    $star = $alreadyFav ? "🌟" : "⭐";
 
                     $html.=<<<end
                         <div class="item">
