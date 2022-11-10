@@ -28,7 +28,7 @@ class Token
     {
         $db = ConnectionFactory::makeConnection();
 
-        $timestamp = date('Y-m-d H:i:s', time() + 60 * 5);
+        $timestamp = date('Y-m-d H:i:s', time() + 30);
 
         $stmt = $db->prepare('UPDATE User SET token = ?, lifetime = ? WHERE id = ?');
         $stmt->execute([$token, $timestamp, $id_user]);
@@ -43,12 +43,17 @@ class Token
      * @return bool vrai si le token est valide, faux sinon
      */
     public static function isValidToken(string $token): bool
-    { // TODO verifier si le temps de vie du token est dépassé
+    {
         $db = ConnectionFactory::makeConnection();
-        $stmt = $db->prepare('SELECT token FROM User WHERE token = ?');
-        $stmt->execute([$token]);
-        $result = $stmt->fetch();
+        $stmt = $db->prepare('SELECT id FROM User WHERE token = ? AND lifetime > ?');
+        $stmt->execute([$token, date('Y-m-d H:i:s', time())]);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
         $stmt->closeCursor();
-        return $result;
+
+        if(!$result){
+            echo 'Token invalide';
+            return false;
+        }
+        return true;
     }
 }
