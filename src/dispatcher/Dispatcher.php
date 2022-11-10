@@ -3,6 +3,7 @@
 namespace netvod\dispatcher;
 
 use netvod\actions\ActionNoteCommentaire;
+use netvod\actions\DisconnectAction;
 use netvod\actions\DisplayProfileAction;
 use netvod\actions\LoginAction;
 use netvod\actions\DisplayCatalogueAction;
@@ -30,12 +31,6 @@ class Dispatcher
 
     public function run(): void
     {
-
-        $retour = <<<end
-            <div class="footer">
-                <a href="?action=accueil">retour à l'accueil</a>
-            </div>
-        end;
         switch ($this->action) {
             case 'forgetPassword':
                 $act = new ForgetPasswordAction();
@@ -49,11 +44,11 @@ class Dispatcher
 
             case'catalogue':
                 $act = new DisplayCatalogueAction();
-                $html = $act->execute() . $retour;
+                $html = $act->execute();
                 break;
             case'serie':
                 $act = new DisplaySerieAction();
-                $html = $act->execute() . $retour;
+                $html = $act->execute();
                 break;
             // Ajouter ou retirer une série parmi ses favoris (POST only)
             case "favourite":
@@ -68,6 +63,11 @@ class Dispatcher
             // S'enregister sur le site
             case 'signup':
                 $act = new SignUpAction();
+                $html = $act->execute();
+                break;
+            // S'enregister sur le site
+            case 'disconnect':
+                $act = new DisconnectAction();
                 $html = $act->execute();
                 break;
             // si l'utilisateur clique sur un episode d'une serie
