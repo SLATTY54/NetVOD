@@ -51,13 +51,19 @@ class DisplaySerieAction extends Action
                 <img src=$img width="300" height="200" alt="image de couverture de la serie">
                 </div>
                 <div class="container">
-                <h3>$data->descriptif</h3>
+               <div class="description">
+               <h3>$data->descriptif</h3>
+               <div class="zobard2000">
+               
                 <h4>paru en $data->annee</h4>
                 <h4>ajouté le $data->date_ajout</h4>
                 <h4>note moyenne $noteMoy/5</h4>
                 <a href="?action=commentaire&serie=$id">voir les commentaires</a>
-                <h5>$nbEp Episode(s)</h5>
-               
+                </div>
+                 
+                </div>
+                <h2>$nbEp Episode(s)</h2>
+              
             end;
 
         $query = $bd->prepare("SELECT * FROM episode WHERE serie_id=?");
@@ -67,7 +73,15 @@ class DisplaySerieAction extends Action
             $html .= <<<end
                 <div class="episodes">
                          
-                        <br><a href="?action=episode&episode_id=$row->id">$row->id : $row->titre ($row->duree min)</a>
+                        <br><a href="?action=episode&episode_id=$row->id"> 
+                        <button>
+                        <ul class="intButton">
+                            <h2>$row->id</h2>  
+                            <h3>$row->titre</h3>
+                            <p>$row->duree min</p>
+                        </ul>
+                        </button></a>
+                        
                 </div> 
                 end;
         }
