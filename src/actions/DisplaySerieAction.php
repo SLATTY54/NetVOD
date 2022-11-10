@@ -36,7 +36,7 @@ class DisplaySerieAction extends Action
         $query->bindParam(1, $id);
         $query->execute();
         $row = $query->fetch(PDO::FETCH_ASSOC);
-        $img = "../ressources/images/" . $row['img'];
+        $img = "../resources/images/" . $row['img'];
 
         $html = <<<end
                 <html lang="en">
