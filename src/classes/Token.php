@@ -28,7 +28,7 @@ class Token
     {
         $db = ConnectionFactory::makeConnection();
 
-        $timestamp = date('Y-m-d H:i:s', time() + 30);
+        $timestamp = date('Y-m-d H:i:s', time() + 60 * 5);
 
         $stmt = $db->prepare('UPDATE User SET token = ?, lifetime = ? WHERE id = ?');
         $stmt->execute([$token, $timestamp, $id_user]);
