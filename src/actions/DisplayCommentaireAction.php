@@ -2,27 +2,26 @@
 
 namespace netvod\actions;
 
-use netvod\database\ConnectionFactory;
-use PDO;
+use netvod\classes\Comment;
 
 class DisplayCommentaireAction extends Action
 {
 
     public function execute(): string
     {
-        $html = <<<end
-                <div class="commentaire">
-                    <h1>Commentaires</h1>
-                    <div class="commentaires">
-            end;
-        $db = ConnectionFactory::makeConnection();
-        $stmt = $db->prepare("SELECT note, commentaire FROM notation WHERE id_serie = ?");
-        $serie = $_GET["serie"];
-        $stmt->bindParam(1, $serie);
-        $stmt->execute();
-        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+        $html = <<<HEREDOC
+                    <html lang="fr">
+                        <head><title>NetVOD</title>
+                            <link href="./css/formulaire_style.css" rel="stylesheet">
+                        </head> 
+                        <body>
+                HEREDOC;
+
+        $serie_id = $_GET["serie"];
+        $commentaires = Comment::getCommentaires($serie_id);
+        foreach ($commentaires as $com) {
             $html .= <<<end
-                    <p>commentaire : {$row['commentaire']} <br>note : {$row['note']} <br><br></p>
+                    <p>$com->email : $com->commentaire <br>note : $com->note <br><br></p>
                 end;
         }
         $html .= <<<end

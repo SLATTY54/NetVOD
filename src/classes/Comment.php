@@ -2,9 +2,9 @@
 
 namespace netvod\classes;
 
-
 use netvod\database\ConnectionFactory;
 use netvod\Exceptions\CommentException;
+use PDO;
 
 class Comment
 {
@@ -27,7 +27,7 @@ class Comment
 
         $stmt = $db->prepare('SELECT * FROM notation WHERE id_user = ? and id_serie = ?');
         $stmt->execute([$id_user, $id_serie]);
-        $comment = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $comment = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($comment) {
             return true;
@@ -35,4 +35,19 @@ class Comment
         return false;
 
     }
+
+    public static function getCommentaires(int $serie_id): array
+    {
+        $db = ConnectionFactory::makeConnection();
+
+        $ps = $db->prepare("SELECT email, note, commentaire FROM notation INNER JOIN User ON notation.id_user = User.id WHERE id_serie = ?");
+        $ps->bindParam(1, $serie_id);
+        $ps->execute();
+        $commentaires = $ps->fetchAll(PDO::FETCH_OBJ);
+
+        $db = null;
+        return $commentaires;
+
+    }
+
 }
