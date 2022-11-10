@@ -27,7 +27,7 @@ class LoginAction extends Action
 
                 try {
                     Authentification::authenticate($email, $password);
-                    header('Location: ?action=accueil');
+                    header('Location: ?action=catalogue');
                     // si l'email ou mot de passe est incorrect, alors on retourne une erreur
                 } catch (AuthException) {
                     $html = $this->renderHtml(true);

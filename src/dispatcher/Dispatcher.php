@@ -3,6 +3,7 @@
 namespace netvod\dispatcher;
 
 use netvod\actions\ActionNoteCommentaire;
+use netvod\actions\DisplayProfileAction;
 use netvod\actions\LoginAction;
 use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\DisplayCommentaireAction;
@@ -34,10 +35,6 @@ class Dispatcher
             </div>
         end;
         switch ($this->action) {
-            case 'notation':
-                $action = new ActionNoteCommentaire();
-                $html = $action->execute();
-                break;
             case'catalogue':
                 $act = new DisplayCatalogueAction();
                 $html = $act->execute() . $retour;
@@ -67,12 +64,6 @@ class Dispatcher
                 $html = $act->execute();
                 $act = new EnCoursAction();
                 $act->execute();
-                break;
-            case"accueil":
-                $act = new DisplayPreferencesAction();
-                $html = $act->execute();
-                $act = new DisplayEnCoursAction();
-                $html .= $act->execute();
                 break;
             case"commentaire":
                 $act = new DisplayCommentaireAction();
