@@ -9,6 +9,7 @@ html {
 body{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #141414;
+
 }
 .logo{
     width: 100%;
@@ -122,8 +123,157 @@ h1 {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+.fav {
+    display: grid;
+    grid-template-columns: repeat(2, 100%);
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+.fav section {
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(60, auto);
+    margin: 20px 0;
+}
+.fav section .item {
+    position: relative;
+    padding: 0 2px;
+    width: 444px;
+    height:286.72px;
+    margin: 0 2px;
+    transition: 250ms all;
+}
+.fav section .item:hover {
+    margin: 0 40px;
+    transform: scale(1.2);
+}
+.fav section .item .heading {
+    position: absolute;
+    bottom: 20%;
+    left: 20px;
+    color: #fff;
+}
+.fav section .item .duration {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    color: #fff;
+}
+
+
+
+.fav section .arrow__btn {
+    position: absolute;
+    color: #fff;
+    text-decoration: none;
+    font-size: 6em;
+    background: #141414;
+    width: 80px;
+    height: 220px;
+    padding: 20px;
+    text-align: center;
+    z-index: 1;
+}
+.fav section .left-arrow {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%, black 100%);
+}
+.fav section .right-arrow {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, black 100%);
+}
+
+
 .like,button {
     margin-top: 2%;
     border: #141414;
     background-color: #141414;
+}
+
+
+
+
+
+
+
+
+.enCours {
+    display: grid;
+    grid-template-columns: repeat(2, 100%);
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+.enCours section {
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(60, auto);
+    margin: 20px 0;
+}
+.enCours section .item {
+    position: relative;
+    padding: 0 2px;
+    width: 444px;
+    height:286.72px;
+    margin: 0 2px;
+    transition: 250ms all;
+}
+.enCours section .item:hover {
+    margin: 0 40px;
+    transform: scale(1.2);
+}
+.enCours section .item .heading {
+    position: absolute;
+    bottom: 20%;
+    left: 20px;
+    color: #fff;
+}
+.enCours section .item .duration {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    color: #fff;
+}
+
+
+
+.enCours section .arrow__btn {
+    position: absolute;
+    color: #fff;
+    text-decoration: none;
+    font-size: 6em;
+    background: #141414;
+    width: 80px;
+    height: 220px;
+    padding: 20px;
+    text-align: center;
+    z-index: 1;
+}
+.enCours section .left-arrow {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%, black 100%);
+}
+.enCours section .right-arrow {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, black 100%);
 }
