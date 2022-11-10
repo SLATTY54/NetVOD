@@ -2,6 +2,7 @@
 
 namespace netvod\dispatcher;
 
+use netvod\actions\DisplayProfileAction;
 use netvod\actions\LoginAction;
 use netvod\actions\DisplayCatalogueAction;
 use netvod\actions\DisplayCommentaireAction;
@@ -75,6 +76,10 @@ class Dispatcher
                 break;
             case"commentaire":
                 $act = new DisplayCommentaireAction();
+                $html = $act->execute();
+                break;
+            case"profile":
+                $act = new DisplayProfileAction();
                 $html = $act->execute();
                 break;
 

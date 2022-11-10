@@ -1,0 +1,170 @@
+html {
+    scroll-behavior: smooth;
+}
+
+*{
+    transition: all 0.32s ease;
+}
+
+body{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #141414;
+
+}
+
+.logo{
+    width: 100%;
+}
+nav {
+    background-color: #141414;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav li {
+    margin-left: 0;
+}
+
+
+
+.errorMessage{
+    color: red;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    margin-left: 2%;
+    margin-top: 2%;
+    height: 65px;
+    width: auto;
+}
+
+.emailControl{
+    position: relative;
+}
+
+#title{
+    margin-top: 0;
+}
+
+label{
+    cursor: default;
+    opacity:1;
+}
+.connexion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile{
+    color: white;
+}
+
+/*broken*/
+.login{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,0.65);
+    border-radius: 9px;
+    width: 249px;
+    height: 300px;
+    padding: 68px 68px 40px;
+}
+
+.register{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,0.65);
+    border-radius: 9px;
+    width: 249px;
+    height: 315px;
+    padding: 68px 68px 68px;
+}
+
+.textfield {
+    background: #333;
+    border: 0;
+    border-radius: 4px;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 7%;
+    padding: 0% 5% 0;
+    width: 100%;
+    opacity: 1;
+    appearance: none;
+    box-sizing: border-box;
+    display: block;
+    font-size: 16px;
+}
+
+.buttonControl{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.btnConnect{
+    height: 50px;
+    margin: 24px 0 12px;
+    padding: 16px;
+    width: 80%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    background-color: #FF0303FF;
+}
+
+.btnRegister{
+    height: 50px;
+    margin: 24px 0 12px 0;
+    padding: 16px;
+    width: 80%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    background-color: #FF0303FF;
+}
+
+.Signup{
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer{
+    bottom: 0;
+    transform: translateY(220%);
+    text-align: center;
+    font-size: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    position: absolute;
+}

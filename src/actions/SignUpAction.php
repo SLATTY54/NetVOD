@@ -30,7 +30,7 @@ class SignUpAction extends Action
                 // si les mots de passe correspondent et que l'email n'est pas déja utilisé, alors l'inscription se fait
                 } else if (!Authentification::isRegistered($email)) {
                     Authentification::register($email, $password);
-                    header('Location: ?action=accueil');
+                    header('Location: ?action=login');
                 // si l'email est déja utilisé, alors on retourne une erreur
                 } else {
                     $html = $this->renderHtml(true, false);
