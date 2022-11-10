@@ -40,7 +40,7 @@ class Dispatcher
                 break;
             case'serie':
                 $act = new DisplaySerieAction();
-                $html = $act->execute().$retour;
+                $html = $act->execute();
                 break;
             case "favourite":
                 $act = new AddSerieFavourite();

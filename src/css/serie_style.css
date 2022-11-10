@@ -1,0 +1,112 @@
+html {
+    background-color: black;
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body {
+    margin: 0;
+    background-color: #333333; ;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #fff;
+    width: 68%;
+    height: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+
+}
+img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+
+}
+
+.img-gradient {
+    max-width: 100%;
+    margin: auto;
+}
+
+.img-gradient::after {
+    display: block;
+    position: relative;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #333333 100%);
+    margin-top: -400px;
+    height: 100px;
+    width: 100%;
+    content: '';
+}
+
+
+h1 {
+    background-color: #333333;
+    position: absolute;
+    /*make the body stack on the image */
+    top: 55%;
+    background-color: rgba(0,0,0,0);
+    padding-left: 20px;
+    color: #fff;
+    font-size: 60px;
+    text-shadow: 0 0 10px #000;
+}
+
+.container {
+    background-color: #333333;
+    position: absolute;
+    border-radius: 0px 0px 5px 5px;
+
+    width: 68%;
+    /*make the body stack on the image */
+    display: flex;
+flex-direction: column;
+}
+.button{
+    margin-left: auto;
+    border-radius: 10px;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.episodes {
+    margin-left: 2%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-right: 2%;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: #606060;
+    color: #fff;
+    /* make the text white */
+
+}
+
+
+button {
+    /*fix thebutton on the right */
+    margin-left: auto;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    /*avoid blue or purple color and add a hover */
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    background-color: #FF0303FF;
+}
+
+
+
