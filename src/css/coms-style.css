@@ -7,6 +7,7 @@ a {
     text-decoration: none;
     color: #fff;
 }
+
 body {
     margin: 0;
     background-color: #333333;;
@@ -33,7 +34,6 @@ h1 {
 }
 
 
-
 .coms {
     padding-top: 2%;
     text-decoration: none;
@@ -46,6 +46,7 @@ h1 {
     margin-left: 2%;
     margin-right: 2%;
 }
+
 p {
     margin: 0;
 }
@@ -81,7 +82,7 @@ button {
 
 }
 
-.intButton  {
+.intButton {
 
     margin: 0;
     display: flex;

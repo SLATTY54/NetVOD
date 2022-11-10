@@ -13,7 +13,7 @@ class DisplaySerieAction extends Action
     {
 
         // si l'utilisateur n'a pas une session de connecté
-        if(!Authentification::isAuthentified()){
+        if (!Authentification::isAuthentified()) {
             header('Location: ?action=login');
         }
 
@@ -36,7 +36,7 @@ class DisplaySerieAction extends Action
         $query->execute();
         $stmt = $query->fetch(PDO::FETCH_ASSOC);
 
-        if(isset($stmt['noteMoy'])){
+        if (isset($stmt['noteMoy'])) {
             $noteMoy = round($stmt['noteMoy'], 2);
         } else {
             $noteMoy = 0;
@@ -51,9 +51,9 @@ class DisplaySerieAction extends Action
         $img = "../resources/images/" . $row['img'];
 
         $html = <<<end
-                <html lang="en">
+                <html lang="fr">
                         <head>
-                            <title>NetVod</title>
+                            <title>NetVOD</title>
                             <link href="./css/serie_style.css" rel="stylesheet">
                         </head>
                          <div class="rtBeuteu">
@@ -76,17 +76,18 @@ class DisplaySerieAction extends Action
                 <h4>paru en $data->annee</h4>
                 <h4>ajouté le $data->date_ajout</h4>
                 <h4>note moyenne $noteMoy/5</h4>
-                <a href="?action=commentaire&serie=$id">voir les commentaires</a>
+                <button type="button" class="buttonComment"><a href="?action=commentaire&serie=$id">voir les commentaires</a></button>
                 </div>
                  
                 </div>
-                <h2>$nbEp Episode(s)</h2>
+                <h2 class="nbEps">$nbEp Episode(s)</h2>
               
             end;
 
         $query = $bd->prepare("SELECT * FROM episode WHERE serie_id=?");
         $query->bindParam(1, $id);
         $query->execute();
+
         foreach ($query->fetchAll(PDO::FETCH_OBJ) as $row) {
             $html .= <<<end
                 <div class="episodes">
@@ -103,13 +104,14 @@ class DisplaySerieAction extends Action
                 </div> 
                 end;
         }
+
         $html .= <<<end
               
                 </div>
                 </body>
                 </html>
             end;
-        // ajout du bouton retour
+
         return $html;
     }
 }

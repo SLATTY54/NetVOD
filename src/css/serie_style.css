@@ -6,6 +6,7 @@ html {
 a {
     text-decoration: none;
 }
+
 body {
     margin: 0;
     background-color: #333333;;
@@ -107,7 +108,7 @@ h1 {
     margin-left: 2%;
 }
 
-button {
+.episodes button {
     cursor: pointer;
     min-width: 100%;
     min-height: 100%;
@@ -117,16 +118,28 @@ button {
     background-color: #3b3b3b;
     color: #fff;
     border: none;
-    display : flex;
+    display: flex;
     flex-direction: row;
-
 }
+
+.buttonComment {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: red;
+    color: #fff;
+    border: none;
+}
+
+.nbEps {
+    margin-left: 3%;
+}
+
 .rtBeuteu {
     margin: 10px 0 0px 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    position : absolute;
+    position: absolute;
 }
 
 .rtBeuteu button {
@@ -155,7 +168,7 @@ button {
     color: #fff;
 }
 
-.intButton  {
+.intButton {
     margin: 0;
     display: flex;
     flex-direction: row;
@@ -166,6 +179,7 @@ h3 {
     text-decoration: none;
     padding: 20px
 }
+
 button p {
     padding: 5px;
     position: absolute;
