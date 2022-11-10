@@ -28,7 +28,12 @@ class DisplaySerieAction extends Action
         $query->bindParam(1, $id);
         $query->execute();
         $stmt = $query->fetch(PDO::FETCH_ASSOC);
-        $noteMoy = round($stmt['noteMoy'], 2);
+
+        if(isset($stmt['noteMoy'])){
+            $noteMoy = round($stmt['noteMoy'], 2);
+        } else {
+            $noteMoy = 0;
+        }
 
         //recuperation de l image de la serie pour le css
         $bd = ConnectionFactory::makeConnection();
