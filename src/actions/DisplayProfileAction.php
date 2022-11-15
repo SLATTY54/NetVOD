@@ -37,10 +37,10 @@ class DisplayProfileAction extends Action
             }else if(!filter_var($_POST['nom'],FILTER_SANITIZE_STRING)||!filter_var($_POST['prenom'],FILTER_SANITIZE_STRING)||!filter_var($_POST['dateN'],FILTER_SANITIZE_STRING)||!filter_var($_POST['biographie'],FILTER_SANITIZE_STRING)) {
                     $html = $this->renderHtml(true, true);
                 }else{
-                    $user->__set('nom',$_POST['nom']);
-                    $user->__set('prenom',$_POST['prenom']);
-                    $user->__set('date_naissance',$_POST['dateN']);
-                    $user->__set('biographie',$_POST['biographie']);
+                    $user->__set('nom',filter_var($_POST['nom'],FILTER_SANITIZE_STRING));
+                    $user->__set('prenom',filter_var($_POST['prenom'],FILTER_SANITIZE_STRING));
+                    $user->__set('date_naissance',filter_var($_POST['dateN'],FILTER_SANITIZE_STRING));
+                    $user->__set('biographie',filter_var($_POST['biographie'],FILTER_SANITIZE_STRING));
 
                     $_SESSION['user'] = serialize($user);
                     $id = $user->__get('id');
