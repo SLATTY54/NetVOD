@@ -17,6 +17,10 @@ On the home page, in the top right corner, you can see a profile icon. If you cl
 - your birthdate
 - add a biography
 
+There is a system of comments on each episode. To be able to comment you have to access an episode of a serie, you'll see a red button "Donner votre avis" in the top right corner. If you click on it, you'll be able to write a comment and add a note.
+You can also see the comments of other users by clicking on the red button "voir les commentaires" on the series' page.
+
+Last cool feature to know about: you can add a serie to your favorites by clicking on the star in the bottom left corner of the catalog page. You'll see the list of your favorites on the homepage.
 
 # Dashboard of the features
 You can access the dashboard by clicking on this link:
