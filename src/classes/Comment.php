@@ -4,7 +4,7 @@ namespace netvod\classes;
 
 
 use netvod\database\ConnectionFactory;
-use netvod\Exceptions\CommentException;
+use netvod\exceptions\CommentException;
 use PDO;
 
 class Comment

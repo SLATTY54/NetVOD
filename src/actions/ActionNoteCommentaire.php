@@ -29,7 +29,10 @@ class ActionNoteCommentaire extends Action {
                 $html .= $this->renderHtml(true,false);
             }else{
                 if (isset($_POST['send'])){
-                    $nbetoile = filter_var($_POST['rate'], FILTER_SANITIZE_NUMBER_INT);
+                    $nbetoile = 0;
+                    if (isset($_POST['etoile'])){
+                        $nbetoile = filter_var($_POST['rate'], FILTER_SANITIZE_NUMBER_INT);
+                    }
                     $commentaire = filter_var($_POST['commentaire'], FILTER_SANITIZE_STRING);
                     $user = unserialize($_SESSION['user']);
                     $id = $user->__get('id');

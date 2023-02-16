@@ -74,7 +74,7 @@ class DisplayProfileAction extends Action
                         <div class="header">
                             <nav>
                                 
-                                <img src="../resources/images/logo.png" alt="logo">
+                                <img src="resources/images/logo.png" alt="logo">
                                 
                           
                             </nav>
